@@ -8,6 +8,8 @@ extends: Packages/HTML/HTML.sublime-syntax
 
 file_extensions:
   - vue
+  - we
+  - wpy
 
 variables:
   # Embedded script and style syntaxes may be wrapped into html comments for
