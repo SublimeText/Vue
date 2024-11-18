@@ -166,6 +166,27 @@
 //^^ - source - comment - meta.tag
 //  ^^^^^^^^^ meta.tag - source
 
+    <script lang="jsx">
+
+// <- source.jsx.embedded.html - source source
+    </script>
+// <- source.jsx.embedded.html - source source
+//^^ source.jsx.embedded.html - source source
+//  ^^^^^^^^^ meta.tag - source
+
+    <script lang="jsx">
+        <!--
+// ^^^^^^^^^ - source
+//      ^^^^ comment.block.html punctuation.definition.comment.begin.html
+//          ^ source.jsx.embedded.html - source source
+        -->
+// ^^^^^ source.jsx.embedded.html - source source
+//      ^^^ comment.block.html punctuation.definition.comment.end.html - source
+//         ^ - source - comment - meta.tag
+    </script>
+// <- - source - comment - meta.tag
+//^^ - source - comment - meta.tag
+//  ^^^^^^^^^ meta.tag - source
 
     <script lang="livescript">
 
@@ -205,6 +226,28 @@
 //          ^ source.ts.embedded.html - source source
         -->
 // ^^^^^ source.ts.embedded.html - source source
+//      ^^^ comment.block.html punctuation.definition.comment.end.html - source
+//         ^ - source - comment - meta.tag
+    </script>
+// <- - source - comment - meta.tag
+//^^ - source - comment - meta.tag
+//  ^^^^^^^^^ meta.tag - source
+
+    <script lang="tsx">
+
+// <- source.tsx.embedded.html - source source
+    </script>
+// <- source.tsx.embedded.html - source source
+//^^ source.tsx.embedded.html - source source
+//  ^^^^^^^^^ meta.tag - source
+
+    <script lang="tsx">
+        <!--
+// ^^^^^^^^^ - source
+//      ^^^^ comment.block.html punctuation.definition.comment.begin.html
+//          ^ source.tsx.embedded.html - source source
+        -->
+// ^^^^^ source.tsx.embedded.html - source source
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - source - comment - meta.tag
     </script>

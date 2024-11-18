@@ -117,6 +117,11 @@ contexts:
         - script-coffeescript
         - tag-lang-attribute-meta
         - tag-generic-attribute-value
+    - match: (?i)(?=jsx{{unquoted_attribute_break}}|'jsx'|"jsx")
+      set:
+        - script-jsx
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
     - match: (?i)(?=livescript{{unquoted_attribute_break}}|'livescript'|"livescript")
       set:
         - script-livescript
@@ -125,6 +130,11 @@ contexts:
     - match: (?i)(?=(?:ts|typescript){{unquoted_attribute_break}}|'(?:ts|typescript)'|"(?:ts|typescript)")
       set:
         - script-typescript
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=tsx{{unquoted_attribute_break}}|'tsx'|"tsx")
+      set:
+        - script-tsx
         - tag-lang-attribute-meta
         - tag-generic-attribute-value
     - match: (?=\S)
@@ -203,6 +213,29 @@ contexts:
         3: source.js.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
+  script-jsx:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.script.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: script-jsx-content
+    - include: script-common
+
+  script-jsx-content:
+    - meta_include_prototype: false
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.jsx
+      embed_scope: source.jsx.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.jsx.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.jsx.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
   script-livescript:
     - meta_include_prototype: false
     - meta_scope: meta.tag.script.begin.html
@@ -224,6 +257,29 @@ contexts:
         1: source.livescript.embedded.html
         2: comment.block.html punctuation.definition.comment.end.html
         3: source.livescript.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  script-tsx:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.script.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: script-tsx-content
+    - include: script-common
+
+  script-tsx-content:
+    - meta_include_prototype: false
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.tsx
+      embed_scope: source.tsx.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.tsx.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.tsx.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
   script-typescript:
