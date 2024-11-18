@@ -86,7 +86,7 @@
 
     <style type="text/css"> <!--
 //  ^^^^^^^ meta.tag - meta.attribute-with-value - source
-//         ^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value - source
+//         ^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value - source
 //                        ^ meta.tag - meta.attribute-with-value - source
 //                         ^^^^^ - meta.tag - source
 //   ^^^^^ entity.name.tag
@@ -113,10 +113,10 @@
 
     <style
     type
-//  ^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
+//  ^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value
     =
     tExT/cSs>
-//  ^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
+//  ^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value
 
     h1 {}
 // <- source.css.embedded.html - source source
@@ -159,17 +159,17 @@
 
     <style lang="postcss">
 
-// <- source.postcss.embedded.html - source source
+// <- source.postcss.embedded.html
     </style>
-// <- source.postcss.embedded.html - source source
-//^^ source.postcss.embedded.html - source source
+// <- source.postcss.embedded.html
+//^^ source.postcss.embedded.html
 //  ^^^^^^^^ meta.tag - source
 
     <style lang="postcss">
         <!--
-// ^^^^^^^^^ - source
+// ^^^^^^^^^ - source.postcss
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//          ^ source.postcss.embedded.html - source source
+//          ^ source.postcss.embedded.html
         -->
 // ^^^^^ source.postcss.embedded.html - source source
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source

@@ -1,0 +1,82 @@
+name: CI Syntax Tests
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths:
+      - '.github/workflows/ci-syntax-tests.yml'
+      - '**.sublime-syntax'
+      - '**/syntax_test_*'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/ci-syntax-tests.yml'
+      - '**.sublime-syntax'
+      - '**/syntax_test_*'
+  workflow_dispatch:
+
+jobs:
+  syntax_tests:
+    name: Sublime Text ${{ matrix.build }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15 # default is 6 hours!
+    strategy:
+      matrix:
+        include:
+          - build: 4107
+            default_packages: v4107
+          - build: 4126
+            default_packages: v4126
+          - build: 4143
+            default_packages: v4143
+          - build: 4152
+            default_packages: v4152
+          - build: 4169
+            default_packages: v4169
+          - build: 4180
+            default_packages: v4180
+          - build: latest
+            default_packages: master
+    steps:
+      - name: Checkout Vue
+        uses: actions/checkout@v4
+        with:
+          path: Vue
+      - name: Prepare dummy syntaxes
+        run: |
+          packages=Vue/st_syntax_tests/Data/Packages
+          scopes=(
+              source.coffee
+              source.livescript
+              source.less
+              source.postcss
+              source.sass
+              source.scss
+              source.sss
+              source.stylus
+              text.jade
+              text.pug
+              text.slm
+              text.slim
+          )
+          mkdir -vp "$packages/Default"
+          for scope in ${scopes[@]}; do
+          cat << SYNTAX > "$packages/Default/$scope.sublime-syntax"
+          %YAML 1.2
+          ---
+          scope: $scope
+
+          contexts:
+              main: []
+          SYNTAX
+          done
+      - uses: SublimeText/syntax-test-action@v2
+        with:
+          build: ${{ matrix.build }}
+          package_name: Vue
+          package_root: Vue
+          default_packages: ${{ matrix.default_packages }}

@@ -90,7 +90,7 @@
 
     <script type="text/javascript"> <!--
 //  ^^^^^^^^ meta.tag - meta.attribute-with-value - source
-//          ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value - source
+//          ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value - source
 //                                ^ meta.tag - meta.attribute-with-value - source
 //                                 ^^^^^ - meta.tag - source
 //   ^^^^^^ entity.name.tag
@@ -120,7 +120,7 @@
 
     <script
     type
-//  ^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
+//  ^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value
     =
     application/jAvAsCrIpT>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
