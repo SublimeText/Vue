@@ -53,7 +53,7 @@
 
     <template lang="jade">
 //  ^^^^^^^^^^ meta.tag - meta.tag meta.tag - meta.attribute-with-value
-//            ^^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.tag meta.tag
+//            ^^^^^^^^^^^ meta.tag meta.attribute-with-value.lang.html - meta.tag meta.tag
 //                       ^ meta.tag.template.begin.html - meta.tag meta.tag
 //  ^ punctuation.definition.tag.begin.html
 //   ^^^^^^^^ entity.name.tag.template.html
@@ -73,7 +73,7 @@
 
     <template lang="pug">
 //  ^^^^^^^^^^ meta.tag - meta.tag meta.tag - meta.attribute-with-value
-//            ^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.tag meta.tag
+//            ^^^^^^^^^^ meta.tag meta.attribute-with-value.lang.html - meta.tag meta.tag
 //                      ^ meta.tag.template.begin.html - meta.tag meta.tag
 //  ^ punctuation.definition.tag.begin.html
 //   ^^^^^^^^ entity.name.tag.template.html
@@ -93,19 +93,19 @@
 
     <template lang="slm">
 //  ^^^^^^^^^^ meta.tag - meta.tag meta.tag - meta.attribute-with-value
-//            ^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.tag meta.tag
+//            ^^^^^^^^^^ meta.tag meta.attribute-with-value.lang.html - meta.tag meta.tag
 //                      ^ meta.tag.template.begin.html - meta.tag meta.tag
 //  ^ punctuation.definition.tag.begin.html
 //   ^^^^^^^^ entity.name.tag.template.html
 //            ^^^^ entity.other.attribute-name.html
 //                ^ punctuation.separator.key-value.html
 //                      ^ punctuation.definition.tag.end.html
-//                       ^ - text.slm
+//                       ^ - text.slim
 
-// <- text.slm.embedded.html
+// <- text.slim.embedded.html
     </template>
-// <- text.slm.embedded.html
-//^^ text.slm.embedded.html
+// <- text.slim.embedded.html
+//^^ text.slim.embedded.html
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.slm
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
