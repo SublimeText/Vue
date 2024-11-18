@@ -90,7 +90,7 @@
 
     <script type="text/javascript"> <!--
 //  ^^^^^^^^ meta.tag - meta.attribute-with-value - source
-//          ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value - source
+//          ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value - source
 //                                ^ meta.tag - meta.attribute-with-value - source
 //                                 ^^^^^ - meta.tag - source
 //   ^^^^^^ entity.name.tag
@@ -120,10 +120,10 @@
 
     <script
     type
-//  ^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
+//  ^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value
     =
     application/jAvAsCrIpT>
-//  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
+//  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value
     var foo = 100;
 // <- source.js.embedded.html - source source
 // ^^^^^^^^^^^^^^^^ source.js.embedded.html - source source
@@ -132,10 +132,15 @@
 // ^ source.js.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
+    <script language="coffeescript">  </script>
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag - meta.tag meta.tag - source
+//          ^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.lang.html - meta.attribute-with-value meta.attribute-with-value
+//                                  ^^ source.coffee.embedded.html - meta.tag
+//                                    ^^^^^^^^^ meta.tag - source
 
     <script lang="coffee">  </script>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - meta.tag meta.tag - source
-//          ^^^^^^^^^^^^^ meta.attribute-with-value.html - meta.attribute-with-value meta.attribute-with-value
+//          ^^^^^^^^^^^^^ meta.attribute-with-value.lang.html - meta.attribute-with-value meta.attribute-with-value
 //                        ^^ source.coffee.embedded.html - meta.tag
 //                          ^^^^^^^^^ meta.tag - source
 

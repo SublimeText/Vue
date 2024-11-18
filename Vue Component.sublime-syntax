@@ -68,7 +68,7 @@ contexts:
 ###[ SCRIPT TAG ]#############################################################
 
   script-tag:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - match: (<)((?i:script)){{tag_name_break}}
       captures:
         1: punctuation.definition.tag.begin.html
@@ -88,8 +88,99 @@ contexts:
     - meta_prepend: true
     - include: script-lang-attribute
 
+  script-lang-attribute:
+    - match: (?i:lang(?:uage)?){{attribute_name_break}}
+      scope: meta.attribute-with-value.lang.html entity.other.attribute-name.html
+      set: script-lang-attribute-assignment
+
+  script-lang-attribute-assignment:
+    - meta_content_scope: meta.tag.script.begin.html meta.attribute-with-value.lang.html
+    - match: =
+      scope: punctuation.separator.key-value.html
+      set: script-lang-attribute-value
+    - match: (?=\S)
+      set: script-javascript
+
+  script-lang-attribute-value:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.script.begin.html meta.attribute-with-value.lang.html
+    - include: script-lang-decider
+
+  script-lang-decider:
+    - match: (?i)(?=babel{{unquoted_attribute_break}}|'babel'|"babel")
+      set:
+        - script-babel
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=coffee(?:script)?{{unquoted_attribute_break}}|'coffee(?:script)?'|"coffee(?:script)?")
+      set:
+        - script-coffeescript
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=livescript{{unquoted_attribute_break}}|'livescript'|"livescript")
+      set:
+        - script-livescript
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=(?:ts|typescript){{unquoted_attribute_break}}|'(?:ts|typescript)'|"(?:ts|typescript)")
+      set:
+        - script-typescript
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?=\S)
+      set:
+        - script-javascript
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+
+  script-babel:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.script.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: script-babel-content
+    - include: script-common
+
+  script-babel-content:
+    - meta_include_prototype: false
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: JavaScript (Babel).sublime-syntax
+      embed_scope: source.js.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.js.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.js.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  script-coffeescript:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.script.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: script-coffeescript-content
+    - include: script-common
+
+  script-coffeescript-content:
+    - meta_include_prototype: false
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.coffee
+      embed_scope: source.coffee.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.coffee.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.coffee.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
   script-javascript:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_scope: meta.tag.script.begin.html
     - match: '>'
       scope: punctuation.definition.tag.end.html
@@ -97,7 +188,7 @@ contexts:
     - include: script-common
 
   script-javascript-content:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_include_prototype: false
     - match: '{{script_content_begin}}'
       captures:
@@ -112,98 +203,56 @@ contexts:
         3: source.js.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
-  script-lang-attribute:
-    - match: (?i:lang){{attribute_name_break}}
-      scope: meta.attribute-with-value.html entity.other.attribute-name.html
-      set: script-lang-attribute-assignment
-
-  script-lang-attribute-assignment:
-    - meta_content_scope: meta.tag.script.begin.html meta.attribute-with-value.html
-    - match: =
-      scope: punctuation.separator.key-value.html
-      set: script-lang-attribute-value
-    - match: (?=\S)
-      set: script-javascript
-
-  script-lang-attribute-value:
+  script-livescript:
     - meta_include_prototype: false
-    - meta_scope: meta.tag.script.begin.html meta.attribute-with-value.html
-    - include: script-lang-decider
+    - meta_scope: meta.tag.script.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: script-livescript-content
+    - include: script-common
 
-  script-lang-decider:
-    - match: (?i)(?=coffee{{unquoted_attribute_break}}|\'coffee\'|"coffee")
-      set:
-        - - meta_scope: meta.tag.script.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{script_content_begin}}'
-                embed_scope: source.coffee.embedded.html
-                escape_captures:
-                  1: source.coffee.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.coffee.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.coffee
-                escape: '{{script_content_end}}'
-          - include: script-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=livescript{{unquoted_attribute_break}}|\'livescript\'|"livescript")
-      set:
-        - - meta_scope: meta.tag.script.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{script_content_begin}}'
-                embed_scope: source.livescript.embedded.html
-                escape_captures:
-                  1: source.livescript.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.livescript.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.livescript
-                escape: '{{script_content_end}}'
-          - include: script-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=ts{{unquoted_attribute_break}}|\'ts\'|"ts")
-      set:
-        - - meta_scope: meta.tag.script.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{script_content_begin}}'
-                embed_scope: source.ts.embedded.html
-                escape_captures:
-                  1: source.ts.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.ts.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.ts
-                escape: '{{script_content_end}}'
-          - include: script-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?=\S)
-      set:
-        - script-javascript
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
+  script-livescript-content:
+    - meta_include_prototype: false
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.livescript
+      embed_scope: source.livescript.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.livescript.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.livescript.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  script-typescript:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.script.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: script-typescript-content
+    - include: script-common
+
+  script-typescript-content:
+    - meta_include_prototype: false
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.ts
+      embed_scope: source.ts.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.ts.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.ts.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
 
 ###[ STYLE TAG ]##############################################################
 
   style-tag:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - match: (<)((?i:style)){{tag_name_break}}
       captures:
         1: punctuation.definition.tag.begin.html
@@ -223,8 +272,63 @@ contexts:
     - meta_prepend: true
     - include: style-lang-attribute
 
+  style-lang-attribute:
+    - match: (?i:lang(?:uage)?){{attribute_name_break}}
+      scope: meta.attribute-with-value.lang.html entity.other.attribute-name.html
+      set: style-lang-attribute-assignment
+
+  style-lang-attribute-assignment:
+    - meta_content_scope: meta.tag.style.begin.html meta.attribute-with-value.lang.html
+    - match: =
+      scope: punctuation.separator.key-value.html
+      set: style-lang-attribute-value
+    - match: (?=\S)
+      set: style-css
+
+  style-lang-attribute-value:
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.style.begin.html meta.attribute-with-value.lang.html
+    - include: style-lang-decider
+
+  style-lang-decider:
+    - match: (?i)(?=postcss\?parser=sugarss{{unquoted_attribute_break}}|'postcss\?parser=sugarss'|"postcss\?parser=sugarss")
+      set:
+        - style-sugarss
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=postcss{{unquoted_attribute_break}}|'postcss'|"postcss")
+      set:
+        - style-postcss
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=less{{unquoted_attribute_break}}|'less'|"less")
+      set:
+        - style-less
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=sass{{unquoted_attribute_break}}|'sass'|"sass")
+      set:
+        - style-sass
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=scss{{unquoted_attribute_break}}|'scss'|"scss")
+      set:
+        - style-scss
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?i)(?=stylus{{unquoted_attribute_break}}|'stylus'|"stylus")
+      set:
+        - style-stylus
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+    - match: (?=\S)
+      set:
+        - style-css
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
+
   style-css:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_scope: meta.tag.style.begin.html
     - match: '>'
       scope: punctuation.definition.tag.end.html
@@ -232,7 +336,7 @@ contexts:
     - include: style-common
 
   style-css-content:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_include_prototype: false
     - match: '{{style_content_begin}}'
       captures:
@@ -247,156 +351,131 @@ contexts:
         3: source.css.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
-  style-lang-attribute:
-    - match: (?i:lang){{attribute_name_break}}
-      scope: meta.attribute-with-value.html entity.other.attribute-name.html
-      set: style-lang-attribute-assignment
+  style-less:
+    - meta_scope: meta.tag.style.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: style-less-content
+    - include: style-common
 
-  style-lang-attribute-assignment:
-    - meta_content_scope: meta.tag.style.begin.html meta.attribute-with-value.html
-    - match: =
-      scope: punctuation.separator.key-value.html
-      set: style-lang-attribute-value
-    - match: (?=\S)
-      set: style-css
+  style-less-content:
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:source.less
+      embed_scope: source.less.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.less.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.less.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
 
-  style-lang-attribute-value:
-    - meta_include_prototype: false
-    - meta_scope: meta.tag.style.begin.html meta.attribute-with-value.html
-    - include: style-lang-decider
+  style-postcss:
+    - meta_scope: meta.tag.style.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: style-postcss-content
+    - include: style-common
 
-  style-lang-decider:
-    - match: (?i)(?=sass{{unquoted_attribute_break}}|\'sass\'|"sass")
-      set:
-        - - meta_scope: meta.tag.style.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{style_content_begin}}'
-                embed_scope: source.sass.embedded.html
-                escape_captures:
-                  1: source.sass.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.sass.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.sass
-                escape: '{{style_content_end}}'
-          - include: style-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=scss{{unquoted_attribute_break}}|\'scss\'|"scss")
-      set:
-        - - meta_scope: meta.tag.style.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{style_content_begin}}'
-                embed_scope: source.scss.embedded.html
-                escape_captures:
-                  1: source.scss.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.scss.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.scss
-                escape: '{{style_content_end}}'
-          - include: style-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=stylus{{unquoted_attribute_break}}|\'stylus\'|"stylus")
-      set:
-        - - meta_scope: meta.tag.style.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{style_content_begin}}'
-                embed_scope: source.stylus.embedded.html
-                escape_captures:
-                  1: source.stylus.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.stylus.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.stylus
-                escape: '{{style_content_end}}'
-          - include: style-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=postcss\?parser=sugarss{{unquoted_attribute_break}}|\'postcss\?parser=sugarss\'|"postcss\?parser=sugarss")
-      set:
-        - - meta_scope: meta.tag.style.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{style_content_begin}}'
-                embed_scope: source.sss.embedded.html
-                escape_captures:
-                  1: source.sss.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.sss.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.sss
-                escape: '{{style_content_end}}'
-          - include: style-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=postcss{{unquoted_attribute_break}}|\'postcss\'|"postcss")
-      set:
-        - - meta_scope: meta.tag.style.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{style_content_begin}}'
-                embed_scope: source.postcss.embedded.html
-                escape_captures:
-                  1: source.postcss.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.postcss.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.postcss
-                escape: '{{style_content_end}}'
-          - include: style-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?i)(?=less{{unquoted_attribute_break}}|\'less\'|"less")
-      set:
-        - - meta_scope: meta.tag.style.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{style_content_begin}}'
-                embed_scope: source.less.embedded.html
-                escape_captures:
-                  1: source.less.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: source.less.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:source.less
-                escape: '{{style_content_end}}'
-          - include: style-common
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
-    - match: (?=\S)
-      set:
-        - style-css
-        - tag-generic-attribute-meta
-        - tag-generic-attribute-value
+  style-postcss-content:
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:source.postcss
+      embed_scope: source.postcss.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.postcss.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.postcss.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-sass:
+    - meta_scope: meta.tag.style.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: style-sass-content
+    - include: style-common
+
+  style-sass-content:
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:source.sass
+      embed_scope: source.sass.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.sass.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.sass.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-scss:
+    - meta_scope: meta.tag.style.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: style-scss-content
+    - include: style-common
+
+  style-scss-content:
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:source.scss
+      embed_scope: source.scss.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.scss.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.scss.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-stylus:
+    - meta_scope: meta.tag.style.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: style-stylus-content
+    - include: style-common
+
+  style-stylus-content:
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:source.stylus
+      embed_scope: source.stylus.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.stylus.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.stylus.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-sugarss:
+    - meta_scope: meta.tag.style.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: style-sugarss-content
+    - include: style-common
+
+  style-sugarss-content:
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:source.sss
+      embed_scope: source.sss.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.sss.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.sss.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
 
 ###[ TEMPLATE TAG ]###########################################################
 
@@ -422,18 +501,13 @@ contexts:
     - include: tag-attributes
     - include: tag-end-self-closing
 
-  template-mustache:
-    - meta_scope: meta.tag.template.begin.html
-    - include: tag-end
-    - include: template-common
-
   template-lang-attribute:
-    - match: (?i:lang){{attribute_name_break}}
-      scope: meta.attribute-with-value.html entity.other.attribute-name.html
+    - match: (?i:lang(?:uage)?){{attribute_name_break}}
+      scope: meta.attribute-with-value.lang.html entity.other.attribute-name.html
       set: template-lang-attribute-assignment
 
   template-lang-attribute-assignment:
-    - meta_content_scope: meta.tag.template.begin.html meta.attribute-with-value.html
+    - meta_content_scope: meta.tag.template.begin.html meta.attribute-with-value.lang.html
     - match: =
       scope: punctuation.separator.key-value.html
       set: template-lang-attribute-value
@@ -442,78 +516,98 @@ contexts:
 
   template-lang-attribute-value:
     - meta_include_prototype: false
-    - meta_scope: meta.tag.template.begin.html meta.attribute-with-value.html
+    - meta_scope: meta.tag.template.begin.html meta.attribute-with-value.lang.html
     - include: template-lang-decider
 
   template-lang-decider:
     - match: (?i)(?=jade{{unquoted_attribute_break}}|\'jade\'|"jade")
       set:
-        - - meta_scope: meta.tag.template.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{template_content_begin}}'
-                embed_scope: text.jade.embedded.html
-                escape_captures:
-                  1: text.jade.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: text.jade.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:text.jade
-                escape: '{{template_content_end}}'
-          - include: template-common
-        - tag-generic-attribute-meta
+        - template-jade
+        - tag-lang-attribute-meta
         - tag-generic-attribute-value
     - match: (?i)(?=pug{{unquoted_attribute_break}}|\'pug\'|"pug")
       set:
-        - - meta_scope: meta.tag.template.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{template_content_begin}}'
-                embed_scope: text.pug.embedded.html
-                escape_captures:
-                  1: text.pug.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: text.pug.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:text.pug
-                escape: '{{template_content_end}}'
-          - include: template-common
-        - tag-generic-attribute-meta
+        - template-pug
+        - tag-lang-attribute-meta
         - tag-generic-attribute-value
     - match: (?i)(?=slm{{unquoted_attribute_break}}|\'slm\'|"slm")
       set:
-        - - meta_scope: meta.tag.template.begin.html
-          - match: '>'
-            scope: punctuation.definition.tag.end.html
-            set:
-              - match: '{{template_content_begin}}'
-                embed_scope: text.slm.embedded.html
-                escape_captures:
-                  1: text.slm.embedded.html
-                  2: comment.block.html punctuation.definition.comment.end.html
-                  3: text.slm.embedded.html
-                  4: comment.block.html punctuation.definition.comment.end.html
-                captures:
-                  1: comment.block.html punctuation.definition.comment.begin.html
-                pop: 1
-                embed: scope:text.slm
-                escape: '{{template_content_end}}'
-          - include: template-common
-        - tag-generic-attribute-meta
+        - template-slim
+        - tag-lang-attribute-meta
         - tag-generic-attribute-value
     - match: (?=\S)
       set:
         - template-mustache
-        - tag-generic-attribute-meta
+        - tag-lang-attribute-meta
         - tag-generic-attribute-value
+
+  template-jade:
+    - meta_scope: meta.tag.template.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: template-jade-content
+    - include: template-common
+
+  template-jade-content:
+    - match: '{{template_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:text.jade
+      embed_scope: text.jade.embedded.html
+      escape: '{{template_content_end}}'
+      escape_captures:
+        1: text.jade.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: text.jade.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  template-mustache:
+    - meta_scope: meta.tag.template.begin.html
+    - include: tag-end
+    - include: template-common
+
+  template-pug:
+    - meta_scope: meta.tag.template.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: template-pug-content
+    - include: template-common
+
+  template-pug-content:
+    - match: '{{template_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:text.pug
+      embed_scope: text.pug.embedded.html
+      escape: '{{template_content_end}}'
+      escape_captures:
+        1: text.pug.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: text.pug.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  template-slim:
+    - meta_scope: meta.tag.template.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: template-slim-content
+    - include: template-common
+
+  template-slim-content:
+    - match: '{{template_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: scope:text.slim
+      embed_scope: text.slim.embedded.html
+      escape: '{{template_content_end}}'
+      escape_captures:
+        1: text.slim.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: text.slim.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
 
 ###[ TAG ATTRIBUTES ]#########################################################
 
@@ -522,28 +616,34 @@ contexts:
     - include: vue-directive
 
   tag-class-attribute-value:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_prepend: true
     - meta_include_prototype: false
 
   tag-generic-attribute-value:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_prepend: true
     - meta_include_prototype: false
 
   tag-href-attribute-value:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_prepend: true
     - meta_include_prototype: false
 
   tag-id-attribute-value:
-    # for compatibility with ST builds before 4114
+    # required until ST4113
     - meta_prepend: true
     - meta_include_prototype: false
 
   tag-attribute-value-content:
     - meta_prepend: true
     - include: mustache-interpolations
+
+  tag-lang-attribute-meta:
+    # required until ST4184 (PR #4061)
+    - meta_include_prototype: false
+    - meta_scope: meta.attribute-with-value.lang.html
+    - include: immediately-pop
 
   strings-common-content:
     - meta_prepend: true
