@@ -46,8 +46,8 @@
 // <- text.jade.embedded.html
 
     </template>
-// <- text.jade.embedded.html
-//^^ text.jade.embedded.html
+// <- - text.jade
+//^^ - text.jade
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.jade
 
 
@@ -64,8 +64,8 @@
 
 // <- text.jade.embedded.html
     </template>
-// <- text.jade.embedded.html
-//^^ text.jade.embedded.html
+// <- - text.jade
+//^^ - text.jade
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.jade
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
@@ -84,8 +84,8 @@
 
 // <- text.pug.embedded.html
     </template>
-// <- text.pug.embedded.html
-//^^ text.pug.embedded.html
+// <- - text.pug
+//^^ - text.pug
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.pug
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
@@ -104,8 +104,8 @@
 
 // <- text.slim.embedded.html
     </template>
-// <- text.slim.embedded.html
-//^^ text.slim.embedded.html
+// <- - text.slim
+//^^ - text.slim
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.slm
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
