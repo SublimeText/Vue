@@ -144,4 +144,18 @@
 //                                           ^ meta.tag - meta.attribute-with-value
 //                                            ^ - meta.tag
 
+    <![CDATA[This is {{interpolated}} content.]]>
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.sgml.cdata.html
+//  ^^^ punctuation.definition.tag.begin.html
+//     ^^^^^ keyword.declaration.cdata.html
+//          ^ punctuation.definition.tag.begin.html
+//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.html
+//           ^^^^^^^^ string.unquoted.cdata.html - meta.interpolation
+//                   ^^^^^^^^^^^^^^^^ meta.interpolation.vue - string
+//                   ^^ punctuation.section.interpolation.begin.html
+//                     ^^^^^^^^^^^^ source.js.embedded.vue variable.other.readwrite.js
+//                                 ^^ punctuation.section.interpolation.end.html
+//                                   ^^^^^^^^^ string.unquoted.cdata.html - meta.interpolation
+//                                            ^^^ punctuation.definition.tag.end.html
+
 </html>
