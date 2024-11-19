@@ -149,7 +149,6 @@
 //  ^^^ punctuation.definition.tag.begin.html
 //     ^^^^^ keyword.declaration.cdata.html
 //          ^ punctuation.definition.tag.begin.html
-//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.html
 //           ^^^^^^^^ string.unquoted.cdata.html - meta.interpolation
 //                   ^^^^^^^^^^^^^^^^ meta.interpolation.vue - string
 //                   ^^ punctuation.section.interpolation.begin.html
