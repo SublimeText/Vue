@@ -18,7 +18,7 @@
 
 <div v-else-if="maybe + seen"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^ meta.attribute-with-value.directive.html
+//   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 //   ^^^^^^^^^ entity.other.attribute-name.html keyword.control.conditional.elseif.vue
 //            ^ punctuation.separator.key-value.html
 //             ^^^^^^^^^^^^^^ meta.string.html
