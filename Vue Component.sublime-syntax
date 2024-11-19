@@ -703,6 +703,11 @@ contexts:
     - meta_scope: meta.attribute-with-value.lang.html
     - include: immediately-pop
 
+  cdata-content:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: mustache-interpolations
+
   strings-common-content:
     - meta_prepend: true
     - include: mustache-interpolations
