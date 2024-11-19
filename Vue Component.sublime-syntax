@@ -53,6 +53,11 @@ variables:
     |   ^ (\s*) (-->) \s* $
     )
 
+  # safe directive end to ensure it is also html attribute end
+  vue_directive_break: (?![^{{ascii_space}}=/>:."'])
+  # safe vue directive name, parameter or modifier chars
+  vue_directive_char: '[A-Za-z0-9_-]'
+
 contexts:
 
 ###[ HTML TAGS ]##############################################################
@@ -735,21 +740,91 @@ contexts:
 ###[ VUE DIRECTIVES ]#########################################################
 
   vue-directive:
-    - match: (?=v-)
+    # https://vuejs.org/guide/essentials/list.html#list-rendering
+    - match: (?i:v-for){{vue_directive_break}}
+      scope: entity.other.attribute-name.html keyword.control.loop.for.vue
       push:
         - vue-directive-meta
         - vue-directive-assignment
-        - tag-generic-attribute-name
-    - match: (?::|@|#)
-      scope: punctuation.definition.attribute.html
+    # https://vuejs.org/guide/essentials/conditional.html#conditional-rendering
+    - match: (?i:v-if){{vue_directive_break}}
+      scope: entity.other.attribute-name.html keyword.control.conditional.if.vue
       push:
         - vue-directive-meta
         - vue-directive-assignment
-        - tag-generic-attribute-name
+    - match: (?i:v-else-if){{vue_directive_break}}
+      scope: entity.other.attribute-name.html keyword.control.conditional.elseif.vue
+      push:
+        - vue-directive-meta
+        - vue-directive-assignment
+    - match: (?i:v-else){{vue_directive_break}}
+      scope:
+        meta.attribute-with-value.directive.html
+        entity.other.attribute-name.html keyword.control.conditional.else.vue
+    - match: (?i:v-show){{vue_directive_break}}
+      scope: entity.other.attribute-name.html keyword.control.conditional.show.vue
+      push:
+        - vue-directive-meta
+        - vue-directive-assignment
+    # https://vuejs.org/guide/essentials/template-syntax.html#directives
+    - match: (?i:v-{{vue_directive_char}}+){{vue_directive_break}}
+      scope: keyword.control.directive.vue
+      push:
+        - vue-directive-meta
+        - vue-directive-assignment
+        - vue-directive-modifiers
+        - vue-directive-parameter
+    # `@event` is short hand form of `v-on:event`
+    # `:attr` is short hand form of `v-bind:attr`
+    # `#attr` is short hand form of `??`
+    - match: '[@:#]'
+      scope: keyword.control.directive.vue
+      push:
+        - vue-directive-meta
+        - vue-directive-assignment
+        - vue-directive-modifiers
+        - vue-directive-parameter-name
 
   vue-directive-meta:
     - meta_include_prototype: false
     - meta_scope: meta.attribute-with-value.directive.html
+    - include: immediately-pop
+
+  vue-directive-modifiers:
+    # https://vuejs.org/guide/essentials/event-handling.html#event-modifiers
+    - meta_scope: entity.other.attribute-name.html
+    - match: (\.)({{vue_directive_char}}+{{vue_directive_break}})?
+      captures:
+        1: punctuation.separator.vue
+        2: constant.other.vue
+    - include: immediately-pop
+
+  vue-directive-parameter:
+    # https://vuejs.org/guide/essentials/template-syntax.html#arguments
+    - match: ':'
+      scope: punctuation.separator.vue
+      set: vue-directive-parameter-name
+    - include: immediately-pop
+
+  vue-directive-parameter-name:
+    - meta_content_scope: variable.parameter.vue
+    - match: '{{vue_directive_break}}'
+      pop: 1
+    - match: (?=\[)
+      push: vue-dynamic-parameter-name
+    - match: '["''`<]'
+      scope: invalid.illegal.attribute-name.html
+
+  vue-dynamic-parameter-name:
+    # https://vuejs.org/guide/essentials/template-syntax.html#dynamic-arguments
+    - clear_scopes: 2  # clear `entity.other.attribute-name variable.parameter`
+    - match: \[
+      scope: meta.interpolation.vue punctuation.section.interpolation.begin.vue
+      embed: scope:source.js#expression-statement
+      embed_scope: meta.interpolation.vue source.js.embedded.vue
+      escape: \]
+      escape_captures:
+        0: meta.interpolation.vue punctuation.section.interpolation.end.vue
     - include: immediately-pop
 
   vue-directive-assignment:
@@ -776,20 +851,3 @@ contexts:
         0: meta.attribute-with-value.directive.html meta.string.html string.quoted.single.html
           punctuation.definition.string.end.html
     - include: else-pop
-
-  tag-generic-attribute-name:
-    - meta_prepend: true
-    # https://vuejs.org/guide/essentials/template-syntax.html#dynamic-arguments
-    - match: (?=\[)
-      push: vue-dynamic-attribute-name
-
-  vue-dynamic-attribute-name:
-    - clear_scopes: 1  # clear `entity.other.attribute-name`
-    - match: \[
-      scope: meta.interpolation.vue punctuation.section.interpolation.begin.vue
-      embed: scope:source.js#expression-statement
-      embed_scope: meta.interpolation.vue source.js.embedded.vue
-      escape: \]
-      escape_captures:
-        0: meta.interpolation.vue punctuation.section.interpolation.end.vue
-    - include: immediately-pop
