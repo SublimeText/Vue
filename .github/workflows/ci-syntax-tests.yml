@@ -3,16 +3,12 @@ name: CI Syntax Tests
 on:
   push:
     branches:
-      - '**'
-    tags-ignore:
-      - '**'
+      - main
     paths:
       - '.github/workflows/ci-syntax-tests.yml'
       - '**.sublime-syntax'
       - '**/syntax_test_*'
   pull_request:
-    branches:
-      - main
     paths:
       - '.github/workflows/ci-syntax-tests.yml'
       - '**.sublime-syntax'
