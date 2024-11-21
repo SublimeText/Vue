@@ -23,6 +23,8 @@ variables:
   vue_directive_break: (?![^{{ascii_space}}=/>:."'])
   # safe vue directive name, parameter or modifier chars
   vue_directive_char: '[A-Za-z0-9_-]'
+  # safe directive parameter end to ensure it is also html attribute end
+  vue_parameter_break: (?![^{{ascii_space}}=/>."'])
 
 contexts:
 
@@ -707,7 +709,7 @@ contexts:
 
   vue-directive-parameter-name:
     - meta_content_scope: variable.parameter.vue
-    - match: '{{vue_directive_break}}'
+    - match: '{{vue_parameter_break}}'
       pop: 1
     - match: (?=\[)
       push: vue-dynamic-parameter-name
