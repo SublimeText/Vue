@@ -37,30 +37,26 @@
 // <- source.css.embedded.html
 
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style>
         <!--
-//^^^^^^^^^^^ - meta.tag - source
+//^^^^^^^^^^ - meta.tag - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
         h1 {}
 // ^^^^^^^^^^^ source.css.embedded.html - source source - meta.tag
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style> <!--
-//  ^^^^^^^^^^^^^ - source
+//  ^^^^^^^^^^^^ - source
 //  ^^^^^^^ meta.tag
 //  ^ punctuation.definition.tag.begin.html
 //   ^^^^^ entity.name.tag
@@ -72,8 +68,8 @@
 // <- source.css.embedded.html - source source
 
     --> </style>
-// <- - comment - source
-//^^ - comment - source
+// <- - comment
+//^^ - comment
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //     ^ - comment - meta.tag - source
 //      ^^^^^^^^ meta.tag - comment - source
@@ -86,7 +82,7 @@
 //  ^^^^^^^ meta.tag - meta.attribute-with-value - source
 //         ^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value - source
 //                        ^ meta.tag - meta.attribute-with-value - source
-//                         ^^^^^^ - meta.tag - source
+//                         ^^^^^ - meta.tag - source
 //   ^^^^^ entity.name.tag
 //         ^^^^ entity.other.attribute-name.html
 //             ^ punctuation.separator.key-value.html
@@ -97,8 +93,8 @@
 // <- source.css.embedded.html - source source
 
     --> </style>
-// <- - comment - source
-//^^ - comment - source
+// <- - comment
+//^^ - comment
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //     ^ - comment - meta.tag - source
 //      ^^^^^^^^ meta.tag - comment - source
@@ -118,8 +114,6 @@
 // <- source.css.embedded.html - source source
 
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
@@ -138,20 +132,18 @@
 
 // <- source.less.embedded.html - source source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style lang="less">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
 // <- source.less.embedded.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
@@ -168,25 +160,21 @@
 
 // <- source.postcss.embedded.html
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style lang="postcss">
         <!--
-// ^^^^^^^^^^ - source.postcss
+// ^^^^^^^^^ - source.postcss
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
 // <- source.postcss.embedded.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
@@ -198,25 +186,21 @@
 
 // <- source.sss.embedded.html - source source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style lang="postcss?parser=sugarss">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
 // <- source.sss.embedded.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
@@ -228,25 +212,21 @@
 
 // <- source.sass.embedded.html - source source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style lang="sass">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
 // <- source.sass.embedded.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
@@ -258,25 +238,21 @@
 
 // <- source.scss.embedded.html - source source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style lang="scss">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
 // <- source.scss.embedded.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
@@ -288,23 +264,19 @@
 
 // <- source.stylus.embedded.html - source source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source
 
 
     <style lang="stylus">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
 // <- source.stylus.embedded.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     </style>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^ meta.tag - source

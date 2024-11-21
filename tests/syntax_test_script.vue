@@ -38,32 +38,26 @@
     var i = 0;
 // ^^^^^^^^^^^^ source.js.embedded.html - source source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
     <script>
     <!--
-//^^^^^^^ - meta.tag - source
+//^^^^^^ - meta.tag - source
 //  ^^^^ comment.block.html punctuation.definition.comment.begin.html
     var i = 0;
 // ^^^^^^^^^^^^ source.js.embedded.html - source source - meta.tag
     -->
-// <- - comment - source
-//^^ - comment - source
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //     ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
     <script> <!--
-//  ^^^^^^^^^^^^^^ - source
+//  ^^^^^^^^^^^^^ - source
 //  ^^^^^^^^ meta.tag
 //  ^ punctuation.definition.tag.begin.html
 //   ^^^^^^ entity.name.tag
@@ -78,8 +72,6 @@
 //     ^^^ source.js.embedded.html keyword.operator - comment
 
     --> </script>
-// <- - comment - source
-//^^ - comment - source
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //     ^ - comment - meta.tag - source
 //      ^^^^^^^^^ meta.tag - comment - source
@@ -92,7 +84,7 @@
 //  ^^^^^^^^ meta.tag - meta.attribute-with-value - source
 //          ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value - source
 //                                ^ meta.tag - meta.attribute-with-value - source
-//                                 ^^^^^^ - meta.tag - source
+//                                 ^^^^^ - meta.tag - source
 //   ^^^^^^ entity.name.tag
 //          ^^^^ entity.other.attribute-name.html
 //              ^ punctuation.separator.key-value.html
@@ -106,8 +98,6 @@
 //     ^^^ source.js.embedded.html keyword.operator - comment
 
     --> </script>
-// <- - comment - source
-//^^ - comment - source
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //     ^ - comment - meta.tag - source
 //      ^^^^^^^^^ meta.tag - comment - source
@@ -126,8 +116,6 @@
 // <- source.js.embedded.html - source source
 // ^^^^^^^^^^^^^^^^ source.js.embedded.html - source source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
@@ -151,23 +139,20 @@
 
 // <- source.coffee.embedded.html - source source
     </script>
-// <- - source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="coffee">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
@@ -179,24 +164,20 @@
 
 // <- source.jsx.embedded.html - source source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="jsx">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
@@ -208,24 +189,20 @@
 
 // <- source.livescript.embedded.html - source source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="livescript">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
@@ -237,24 +214,20 @@
 
 // <- source.ts.embedded.html - source source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="ts">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
 
@@ -266,22 +239,18 @@
 
 // <- source.tsx.embedded.html - source source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="tsx">
         <!--
-// ^^^^^^^^^^ - source
+// ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
         -->
-// <- - comment - source
-//^^^^^^ - comment - source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //         ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
-// <- - meta.tag - source
-//^^ - meta.tag - source
 //  ^^^^^^^^^ meta.tag - source
