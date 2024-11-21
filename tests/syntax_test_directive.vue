@@ -8,20 +8,18 @@
 
 <div v-if="seen"></div>
 //^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^ entity.other.attribute-name.html keyword.control.conditional.if.vue
-//       ^ punctuation.separator.key-value.html
-//        ^^^^^^ meta.string.html
+//   ^^^^ meta.directive.vue keyword.control.conditional.if.vue
+//       ^ meta.directive.vue punctuation.separator.key-value.html
+//        ^^^^^^ meta.directive.value.vue meta.string.html
 //        ^ string.quoted.double.html punctuation.definition.string.begin.html
 //         ^^^^ meta.interpolation.vue source.js.embedded.vue variable.other.readwrite.js
 //             ^ string.quoted.double.html punctuation.definition.string.end.html
 
 <div v-else-if="maybe + seen"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^^^^^ entity.other.attribute-name.html keyword.control.conditional.elseif.vue
-//            ^ punctuation.separator.key-value.html
-//             ^^^^^^^^^^^^^^ meta.string.html
+//   ^^^^^^^^^ meta.directive.vue keyword.control.conditional.elseif.vue
+//            ^ meta.directive.vue punctuation.separator.key-value.html
+//             ^^^^^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //             ^ string.quoted.double.html punctuation.definition.string.begin.html
 //              ^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue
 //              ^^^^^ variable.other.readwrite.js
@@ -31,14 +29,13 @@
 
 <div v-else></div>
 //^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^ meta.attribute-with-value.directive.html entity.other.attribute-name.html keyword.control.conditional.else.vue
+//   ^^^^^^ meta.directive.vue keyword.control.conditional.else.vue
 
 <div v-show="visible"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^^ entity.other.attribute-name.html keyword.control.conditional.show.vue
-//         ^ punctuation.separator.key-value.html
-//          ^^^^^^^^^ meta.string.html
+//   ^^^^^^ meta.directive.vue keyword.control.conditional.show.vue
+//         ^ meta.directive.vue punctuation.separator.key-value.html
+//          ^^^^^^^^^ meta.directive.value.vue meta.string.html
 //          ^ string.quoted.double.html punctuation.definition.string.begin.html
 //           ^^^^^^^ meta.interpolation.vue source.js.embedded.vue variable.other.readwrite.js
 //                  ^ string.quoted.double.html punctuation.definition.string.end.html
@@ -52,10 +49,9 @@
 
 <li v-for="todo in todos"> {{ todo.name }} </li>
 //^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//  ^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//  ^^^^^ entity.other.attribute-name.html keyword.control.loop.for.vue
-//       ^ punctuation.separator.key-value.html
-//        ^^^^^^^^^^^^^^^ meta.string.html
+//  ^^^^^ meta.directive.vue keyword.control.loop.for.vue
+//       ^ meta.directive.vue punctuation.separator.key-value.html
+//        ^^^^^^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //        ^ string.quoted.double.html punctuation.definition.string.begin.html
 //         ^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue
 //         ^^^^ variable.other.readwrite.js
@@ -81,23 +77,20 @@
 
 <div v-on:event="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^^^^^^ entity.other.attribute-name.html - entity.other entity.other
-//   ^^^^ keyword.other.directive.vue
-//       ^ punctuation.separator.vue
-//             ^ punctuation.separator.key-value.html
-//              ^^^^^^^^^^^^^^^ meta.string.html
+//   ^^^^ meta.directive.vue keyword.other.directive.vue
+//       ^ meta.directive.vue punctuation.separator.vue
+//        ^^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
+//             ^ meta.directive.vue punctuation.separator.key-value.html
+//              ^^^^^^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //              ^ string.quoted.double.html punctuation.definition.string.begin.html
 //               ^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                            ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
 
 <div @event="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^^ entity.other.attribute-name.html - entity.other entity.other
-//   ^ keyword.other.directive.vue
-//         ^ punctuation.separator.key-value.html
-//          ^^^^^^^^^^^^^^^ meta.string.html
+//   ^ meta.directive.vue keyword.other.directive.vue
+//         ^ meta.directive.vue punctuation.separator.key-value.html
+//          ^^^^^^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //          ^ string.quoted.double.html punctuation.definition.string.begin.html
 //           ^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                        ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
@@ -111,31 +104,27 @@
 
 <div v-on:[eventName]="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-//   ^^^^ keyword.other.directive.vue
-//       ^ punctuation.separator.vue
-//        ^^^^^^^^^^^ meta.interpolation.vue
+//   ^^^^ meta.directive.vue keyword.other.directive.vue
+//       ^ meta.directive.vue punctuation.separator.vue
+//        ^^^^^^^^^^^ meta.directive.parameter.vue meta.interpolation.vue
 //        ^ punctuation.section.interpolation.begin.vue
 //         ^^^^^^^^^ source.js.embedded.vue variable.other.readwrite.js
 //                  ^ punctuation.section.interpolation.end.vue
-//                   ^ punctuation.separator.key-value.html
-//                    ^^^^^^^^^^^^^^^ meta.string.html
+//                   ^ meta.directive.vue punctuation.separator.key-value.html
+//                    ^^^^^^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //                    ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                     ^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                                  ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
 
 <div @[eventName]="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^^^^^^^^ entity.other.attribute-name.html
-//   ^ keyword.other.directive.vue
-//    ^^^^^^^^^^^ meta.interpolation.vue
+//   ^ meta.directive.vue keyword.other.directive.vue
+//    ^^^^^^^^^^^ meta.directive.parameter.vue meta.interpolation.vue
 //    ^ punctuation.section.interpolation.begin.vue
 //     ^^^^^^^^^ source.js.embedded.vue variable.other.readwrite.js
 //              ^ punctuation.section.interpolation.end.vue
-//               ^ punctuation.separator.key-value.html
-//                ^^^^^^^^^^^^^^^ meta.string.html
+//               ^ meta.directive.vue punctuation.separator.key-value.html
+//                ^^^^^^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //                ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                 ^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                              ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
@@ -150,14 +139,13 @@
 <!-- the click event's propagation will be stopped -->
 <a v-on:click.stop="doThis()"></a>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-// ^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^^^^ keyword.other.directive.vue
-//     ^ punctuation.separator.vue
-//           ^ punctuation.separator.vue
-//            ^^^^ storage.modifier.vue
-//                ^ punctuation.separator.key-value.html
-//                 ^^^^^^^^^^ meta.string.html
+// ^^^^ meta.directive.vue keyword.other.directive.vue
+//     ^ meta.directive.vue punctuation.separator.vue
+//      ^^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
+//           ^ meta.directive.modifiers.vue punctuation.separator.vue
+//            ^^^^ meta.directive.modifiers.vue storage.modifier.vue
+//                ^ meta.directive.vue punctuation.separator.key-value.html
+//                 ^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //                 ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                  ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                          ^ string.quoted.double.html punctuation.definition.string.end.html
@@ -165,13 +153,12 @@
 <!-- the click event's propagation will be stopped -->
 <a @click.stop="doThis()"></a>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-// ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-// ^^^^^^^^^^^ entity.other.attribute-name.html
-// ^ keyword.other.directive.vue
-//       ^ punctuation.separator.vue
-//        ^^^^ storage.modifier.vue
-//            ^ punctuation.separator.key-value.html
-//             ^^^^^^^^^^ meta.string.html
+// ^ meta.directive.vue keyword.other.directive.vue
+//  ^^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
+//       ^ meta.directive.modifiers.vue punctuation.separator.vue
+//        ^^^^ meta.directive.modifiers.vue storage.modifier.vue
+//            ^ meta.directive.vue punctuation.separator.key-value.html
+//             ^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //             ^ string.quoted.double.html punctuation.definition.string.begin.html
 //              ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                      ^ string.quoted.double.html punctuation.definition.string.end.html
@@ -179,44 +166,41 @@
 <!-- modifiers can be chained -->
 <a @click.stop.prevent="doThat()"></a>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-// ^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^ keyword.other.directive.vue
-//       ^ punctuation.separator.vue
-//        ^^^^ storage.modifier.vue
-//            ^ punctuation.separator.vue
-//             ^^^^^^^ storage.modifier.vue
-//                    ^ punctuation.separator.key-value.html
-//                     ^^^^^^^^^^ meta.string.html
+// ^ meta.directive.vue keyword.other.directive.vue
+//  ^^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
+//       ^ meta.directive.modifiers.vue punctuation.separator.vue
+//        ^^^^ meta.directive.modifiers.vue storage.modifier.vue
+//            ^ meta.directive.modifiers.vue punctuation.separator.vue
+//             ^^^^^^^ meta.directive.modifiers.vue storage.modifier.vue
+//                    ^ meta.directive.vue punctuation.separator.key-value.html
+//                     ^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //                     ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                      ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                              ^ string.quoted.double.html punctuation.definition.string.end.html
 
 <a v-on:click:outside.prevent="doThis()"></a>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^^^^ keyword.other.directive.vue
-//     ^ punctuation.separator.vue
+// ^^^^ meta.directive.vue keyword.other.directive.vue
+//     ^ meta.directive.vue  punctuation.separator.vue
+//      ^^^^^^^^^^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
 //           ^ - punctuation
-//                   ^ punctuation.separator.vue
-//                    ^^^^^^^ storage.modifier.vue
-//                           ^ punctuation.separator.key-value.html
-//                            ^^^^^^^^^^ meta.string.html
+//                   ^ meta.directive.modifiers.vue punctuation.separator.vue
+//                    ^^^^^^^ meta.directive.modifiers.vue storage.modifier.vue
+//                           ^ meta.directive.vue punctuation.separator.key-value.html
+//                            ^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //                            ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                             ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                                     ^ string.quoted.double.html punctuation.definition.string.end.html
 
 <a @click:outside.prevent="doThat()"></a>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-// ^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^ keyword.other.directive.vue
+// ^ meta.directive.vue keyword.other.directive.vue
+//  ^^^^^^^^^^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
 //       ^ - punctuation
-//               ^ punctuation.separator.vue
-//                ^^^^^^^ storage.modifier.vue
-//                       ^ punctuation.separator.key-value.html
-//                        ^^^^^^^^^^ meta.string.html
+//               ^ meta.directive.modifiers.vue punctuation.separator.vue
+//                ^^^^^^^ meta.directive.modifiers.vue storage.modifier.vue
+//                       ^ meta.directive.vue punctuation.separator.key-value.html
+//                        ^^^^^^^^^^ meta.directive.value.vue meta.string.html
 //                        ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                         ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                                 ^ string.quoted.double.html punctuation.definition.string.end.html
@@ -227,9 +211,9 @@
 
 <div
     v-bind:[styles["name"]]='{
-//  ^^^^^^ keyword.other.directive.vue
-//        ^ punctuation.separator.vue
-//         ^^^^^^^^^^^^^^^^ meta.interpolation.vue
+//  ^^^^^^ meta.directive.vue keyword.other.directive.vue
+//        ^ meta.directive.vue punctuation.separator.vue
+//         ^^^^^^^^^^^^^^^^ meta.directive.parameter.vue meta.interpolation.vue
 //         ^ punctuation.section.interpolation.begin.vue
 //          ^^^^^^ variable.other.readwrite.js
 //                ^^^^^^^^ meta.brackets.js
@@ -237,9 +221,9 @@
 //                 ^^^^^^ meta.string.js string.quoted.double.js
 //                       ^ punctuation.section.brackets.end.js
 //                        ^ punctuation.section.interpolation.end.vue
-//                         ^ punctuation.separator.key-value.html
-//                          ^ meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
-//                           ^^ meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping.js
+//                         ^ meta.directive.vue punctuation.separator.key-value.html
+//                          ^ meta.directive.value.vue meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+//                           ^^ meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping.js
         backgroundColor: active ? "green" : "red",
 //                              ^ keyword.operator.ternary.js
 //                                ^^^^^^^ meta.string.js string.quoted.double.js
@@ -254,5 +238,94 @@
 //                                            ^^^^^^^^^^ meta.string meta.interpolation.js - string
 //                                                      ^^^^ meta.string string.quoted.other.js
     }'>
-//^^^ meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping.js
-//   ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+//^^^ meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping.js
+//   ^ meta.directive.value.vue meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+
+    <!--
+    Other Vue Directives
+     -->
+
+    <p v-attrib="{'key': 'value'}">
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^^^ meta.tag meta.directive.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping
+//                               ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                                ^ meta.tag - meta.directive
+//                                 ^ - meta.tag
+
+    <p v-attrib="i = 0">
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^^^ meta.tag meta.directive.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                    ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                     ^ meta.tag - meta.directive
+//                      ^ - meta.tag
+
+    <p v-attrib='i = 0'>
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^^^ meta.tag meta.directive.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                    ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                     ^ meta.tag - meta.directive
+//                      ^ - meta.tag
+
+    <p #handler="variable">
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                       ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                        ^ meta.tag - meta.directive
+//                         ^ - meta.tag
+
+    <p #handler='variable'>
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                       ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                        ^ meta.tag - meta.directive
+//                         ^ - meta.tag
+
+    <p :handler="expression">
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                         ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                          ^ meta.tag - meta.directive
+//                           ^ - meta.tag
+
+    <p :handler='expression'>
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                         ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                          ^ meta.tag - meta.directive
+//                           ^ - meta.tag
+
+    <template #[`content-${variable}`]>
+//            ^ meta.tag.template.begin.html meta.directive.vue keyword.other.directive.vue
+//             ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
+//              ^^^^^^^^^^^^^^^^^^^^^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue source.js.embedded.vue
+//                                   ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
+//                                    ^ meta.tag.template.begin.html - meta.directive
+//                                     ^ - meta.tag
+
+    <template v-slot:[`content-${variable}`] >
+//            ^^^^^^ meta.tag.template.begin.html meta.directive.vue keyword.other.directive.vue
+//                  ^ meta.tag.template.begin.html meta.directive.vue punctuation.separator.vue
+//                   ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
+//                    ^^^^^^^^^^^^^^^^^^^^^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue source.js.embedded.vue
+//                                         ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
+//                                          ^ meta.tag.template.begin.html meta.directive.vue
+//                                           ^ meta.tag.template.begin.html - meta.directive
+//                                            ^ - meta.tag

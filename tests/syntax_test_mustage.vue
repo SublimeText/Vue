@@ -128,89 +128,88 @@
      -->
 
     <p v-attrib="{'key': 'value'}">
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping
-//                               ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                                ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^^^ meta.tag meta.directive.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping
+//                               ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                                ^ meta.tag - meta.directive
 //                                 ^ - meta.tag
 
     <p v-attrib="i = 0">
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                    ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                     ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^^^ meta.tag meta.directive.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                    ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                     ^ meta.tag - meta.directive
 //                      ^ - meta.tag
 
     <p v-attrib='i = 0'>
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                    ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                     ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^^^ meta.tag meta.directive.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                    ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                     ^ meta.tag - meta.directive
 //                      ^ - meta.tag
 
     <p #handler="variable">
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ keyword.other.directive.vue
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                       ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                        ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                       ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                        ^ meta.tag - meta.directive
 //                         ^ - meta.tag
 
     <p #handler='variable'>
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ keyword.other.directive.vue
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                       ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                        ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                       ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                        ^ meta.tag - meta.directive
 //                         ^ - meta.tag
 
     <p :handler="expression">
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ keyword.other.directive.vue
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                         ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                          ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                         ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                          ^ meta.tag - meta.directive
 //                           ^ - meta.tag
 
     <p :handler='expression'>
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ keyword.other.directive.vue
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                         ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                          ^ meta.tag - meta.attribute-with-value
+//  ^^^ meta.tag - meta.directive
+//     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string
+//      ^^^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//              ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//               ^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.html meta.interpolation.vue source.js.embedded.vue
+//                         ^ meta.tag meta.directive.value.vue meta.string.html - meta.interpolation
+//                          ^ meta.tag - meta.directive
 //                           ^ - meta.tag
 
     <template #[`content-${variable}`]>
-//            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html entity.other.attribute-name.html
-//            ^ keyword.other.directive.vue
-//             ^ meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
-//              ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue
-//                                   ^ meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
-//                                    ^ meta.tag - meta.attribute-with-value
+//            ^ meta.tag.template.begin.html meta.directive.vue keyword.other.directive.vue
+//             ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
+//              ^^^^^^^^^^^^^^^^^^^^^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue source.js.embedded.vue
+//                                   ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
+//                                    ^ meta.tag.template.begin.html - meta.directive
 //                                     ^ - meta.tag
 
     <template v-slot:[`content-${variable}`] >
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html entity.other.attribute-name.html
-//            ^^^^^^ keyword.other.directive.vue
-//                   ^ meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
-//                    ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue
-//                                         ^ meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
-//                                          ^ meta.tag - meta.interpolation
-//                                           ^ meta.tag - meta.attribute-with-value
+//            ^^^^^^ meta.tag.template.begin.html meta.directive.vue keyword.other.directive.vue
+//                  ^ meta.tag.template.begin.html meta.directive.vue punctuation.separator.vue
+//                   ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
+//                    ^^^^^^^^^^^^^^^^^^^^^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue source.js.embedded.vue
+//                                         ^ meta.tag.template.begin.html meta.directive.parameter.vue meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
+//                                          ^ meta.tag.template.begin.html meta.directive.vue
+//                                           ^ meta.tag.template.begin.html - meta.directive
 //                                            ^ - meta.tag
 
     <![CDATA[This is {{interpolated}} content.]]>
