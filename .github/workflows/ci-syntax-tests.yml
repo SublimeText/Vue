@@ -24,8 +24,6 @@ jobs:
       matrix:
         include:
           # Stable ST4 builds
-          - build: 4107
-            default_packages: v4107
           - build: 4126
             default_packages: v4126
           - build: 4143
