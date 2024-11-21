@@ -12,6 +12,31 @@
 // <- text.html.vue - text text
 //  ^^^^^^^^^^^ meta.tag.template.end.html
 
+    <!--
+    HAML Template Tests
+    -->
+
+    <template lang="haml">
+//  ^^^^^^^^^^ meta.tag - meta.tag meta.tag - meta.attribute-with-value
+//            ^^^^^^^^^^^ meta.tag meta.attribute-with-value.lang.html - meta.tag meta.tag
+//                       ^ meta.tag.template.begin.html - meta.tag meta.tag
+//  ^ punctuation.definition.tag.begin.html
+//   ^^^^^^^^ entity.name.tag.template.html
+//            ^^^^ entity.other.attribute-name.html
+//                ^ punctuation.separator.key-value.html
+//                       ^ punctuation.definition.tag.end.html
+
+// <- text.haml.embedded.html
+    </template>
+//  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.haml
+//  ^^ punctuation.definition.tag.begin.html
+//    ^^^^^^^^ entity.name.tag.template.html
+//            ^ punctuation.definition.tag.end.html
+
+    <!--
+    Jade Template Tests
+    -->
+
     <template lang="jade"> foo </template>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
 //                        ^^^^^ text.jade.embedded.html - meta.tag
@@ -31,7 +56,6 @@
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
 //                        ^^^^^^^^^^^^^^ text.jade.embedded.html - meta.tag - comment
 //                                      ^^^^^^^^^^^ meta.tag - source
-
 
     <template lang="jade">
 
@@ -58,6 +82,10 @@
 //    ^^^^^^^^ entity.name.tag.template.html
 //            ^ punctuation.definition.tag.end.html
 
+    <!--
+    Pug Template Tests
+    -->
+
     <template lang="pug">
 //  ^^^^^^^^^^ meta.tag - meta.tag meta.tag - meta.attribute-with-value
 //            ^^^^^^^^^^ meta.tag meta.attribute-with-value.lang.html - meta.tag meta.tag
@@ -74,6 +102,10 @@
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
 //            ^ punctuation.definition.tag.end.html
+
+    <!--
+    Slim Template Tests
+    -->
 
     <template lang="slm">
 //  ^^^^^^^^^^ meta.tag - meta.tag meta.tag - meta.attribute-with-value

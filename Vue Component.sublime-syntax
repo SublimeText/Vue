@@ -508,6 +508,11 @@ contexts:
     - include: template-lang-decider
 
   template-lang-decider:
+    - match: (?i)(?=haml{{unquoted_attribute_break}}|\'haml\'|"haml")
+      set:
+        - template-haml
+        - tag-lang-attribute-meta
+        - tag-generic-attribute-value
     - match: (?i)(?=jade{{unquoted_attribute_break}}|\'jade\'|"jade")
       set:
         - template-jade
@@ -528,6 +533,20 @@ contexts:
         - template-mustache
         - tag-lang-attribute-meta
         - tag-generic-attribute-value
+
+  template-haml:
+    - meta_scope: meta.tag.template.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: template-haml-content
+    - include: template-common
+
+  template-haml-content:
+    - match: '{{template_content_begin}}'
+      embed: scope:text.haml
+      embed_scope: text.haml.embedded.html
+      escape: '{{template_content_end}}'
+      pop: 1
 
   template-jade:
     - meta_scope: meta.tag.template.begin.html
