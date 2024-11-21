@@ -195,3 +195,19 @@
 //                     ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                      ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                              ^ string.quoted.double.html punctuation.definition.string.end.html
+
+<a @click:outside.prevent="doThat()"></a>
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
+// ^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
+// ^ keyword.control.directive.vue
+//  ^^^^^ variable.parameter.vue
+//       ^ keyword.control.directive.vue
+//        ^^^^^^^ variable.parameter.vue
+//               ^ punctuation.separator.vue
+//                ^^^^^^^ constant.other.vue
+//                       ^ punctuation.separator.key-value.html
+//                        ^^^^^^^^^^ meta.string.html
+//                        ^ string.quoted.double.html punctuation.definition.string.begin.html
+//                         ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
+//                                 ^ string.quoted.double.html punctuation.definition.string.end.html
