@@ -83,7 +83,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 //   ^^^^^^^^^^ entity.other.attribute-name.html - entity.other entity.other
-//   ^^^^ keyword.control.directive.vue
+//   ^^^^ keyword.other.directive.vue
 //       ^ punctuation.separator.vue
 //        ^^^^^ variable.parameter.vue
 //             ^ punctuation.separator.key-value.html
@@ -96,7 +96,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 //   ^^^^^^ entity.other.attribute-name.html - entity.other entity.other
-//   ^ keyword.control.directive.vue
+//   ^ keyword.other.directive.vue
 //    ^^^^^ variable.parameter.vue
 //         ^ punctuation.separator.key-value.html
 //          ^^^^^^^^^^^^^^^ meta.string.html
@@ -115,7 +115,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 //   ^^^^^ entity.other.attribute-name.html
-//   ^^^^ keyword.control.directive.vue
+//   ^^^^ keyword.other.directive.vue
 //       ^ punctuation.separator.vue
 //        ^^^^^^^^^^^ meta.interpolation.vue
 //        ^ punctuation.section.interpolation.begin.vue
@@ -130,7 +130,7 @@
 <div @[eventName]="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^ entity.other.attribute-name.html keyword.control.directive.vue
+//   ^ entity.other.attribute-name.html keyword.other.directive.vue
 //    ^^^^^^^^^^^ meta.interpolation.vue
 //    ^ punctuation.section.interpolation.begin.vue
 //     ^^^^^^^^^ source.js.embedded.vue variable.other.readwrite.js
@@ -153,7 +153,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^^^^ keyword.control.directive.vue
+// ^^^^ keyword.other.directive.vue
 //     ^ punctuation.separator.vue
 //      ^^^^^ variable.parameter.vue
 //           ^ punctuation.separator.vue
@@ -169,7 +169,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 // ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^ entity.other.attribute-name.html
-// ^ keyword.control.directive.vue
+// ^ keyword.other.directive.vue
 //  ^^^^^ variable.parameter.vue
 //       ^ punctuation.separator.vue
 //        ^^^^ constant.other.vue
@@ -184,7 +184,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^ keyword.control.directive.vue
+// ^ keyword.other.directive.vue
 //  ^^^^^ variable.parameter.vue
 //       ^ punctuation.separator.vue
 //        ^^^^ constant.other.vue
@@ -200,7 +200,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^^^^ keyword.control.directive.vue
+// ^^^^ keyword.other.directive.vue
 //     ^ punctuation.separator.vue
 //      ^^^^^^^^^^^^^ variable.parameter.vue - punctuation
 //                   ^ punctuation.separator.vue
@@ -215,7 +215,7 @@
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
-// ^ keyword.control.directive.vue
+// ^ keyword.other.directive.vue
 //  ^^^^^^^^^^^^^ variable.parameter.vue - punctuation
 //               ^ punctuation.separator.vue
 //                ^^^^^^^ constant.other.vue
