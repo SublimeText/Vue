@@ -65,6 +65,7 @@ contexts:
     - meta_prepend: true
     - include: script-tag
     - include: style-tag
+    - include: i18n-tag
     - include: template-tag
 
 ###[ SCRIPT TAG ]#############################################################
@@ -534,6 +535,48 @@ contexts:
         2: comment.block.html punctuation.definition.comment.end.html
         3: source.sss.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
+
+###[ I18N TAG ]###############################################################
+
+  i18n-tag:
+    # https://github.com/kazupon/vue-i18n
+    - match: (<)((?i:i18n)){{tag_name_break}}
+      captures:
+        1: punctuation.definition.tag.begin.html
+        2: entity.name.tag.i18n.html
+      push: i18n-open-tag-content
+    - match: (</)((?i:i18n)){{tag_name_break}}
+      captures:
+        1: punctuation.definition.tag.begin.html
+        2: entity.name.tag.i18n.html
+        3: punctuation.definition.tag.end.html
+      push: i18n-close-tag-content
+
+  i18n-close-tag-content:
+    - meta_scope: meta.tag.i18n.end.html
+    - include: tag-end
+
+  i18n-open-tag-content:
+    - meta_scope: meta.tag.i18n.begin.html
+    - match: '>'
+      scope: punctuation.definition.tag.end.html
+      set: i18n-content
+    - include: tag-attributes
+    - include: tag-end-self-closing
+
+  i18n-content:
+    # expect json object or list
+    - match: (?=(?:^|\s*)[{\[])
+      embed: scope:source.json
+      embed_scope: source.json.embedded.html
+      escape: (?=(?:^\s*)?</(?i:i18n){{tag_name_break}})
+      pop: 1
+    # use yaml syntax otherwise (it also highlights json well!)
+    - match: (?=(?:^|\s*)\S)
+      embed: scope:source.yaml
+      embed_scope: source.yaml.embedded.html
+      escape: (?=(?:^\s*)?</(?i:i18n){{tag_name_break}})
+      pop: 1
 
 ###[ TEMPLATE TAG ]###########################################################
 
