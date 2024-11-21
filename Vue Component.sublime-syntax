@@ -673,10 +673,6 @@ contexts:
     - meta_prepend: true
     - meta_include_prototype: false
 
-  tag-attribute-value-content:
-    - meta_prepend: true
-    - include: mustache-interpolations
-
   tag-lang-attribute-meta:
     # required until ST4184 (PR #4061)
     - meta_include_prototype: false
