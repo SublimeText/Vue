@@ -808,7 +808,7 @@ contexts:
         - vue-directive-assignment
     # https://vuejs.org/guide/essentials/template-syntax.html#directives
     - match: (?i:v-{{vue_directive_char}}+){{vue_directive_break}}
-      scope: keyword.control.directive.vue
+      scope: keyword.other.directive.vue
       push:
         - vue-directive-meta
         - vue-directive-assignment
@@ -818,7 +818,7 @@ contexts:
     # `:attr` is short hand form of `v-bind:attr`
     # `#attr` is short hand form of `??`
     - match: '[@:#]'
-      scope: keyword.control.directive.vue
+      scope: keyword.other.directive.vue
       push:
         - vue-directive-meta
         - vue-directive-assignment
