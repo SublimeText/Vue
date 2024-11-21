@@ -12,6 +12,9 @@ file_extensions:
   - wpy
 
 variables:
+  # CSS specific variables
+  # ======================
+
   # Embedded script and style syntaxes may be wrapped into html comments for
   # historical reasons. The following patterns match them, while maintaining
   # correct boundaries of embedded source scopes. That's required to enable
@@ -44,14 +47,12 @@ variables:
     # or standalone html comment end punctuation in a line
     |   ^ (\s*) (-->) \s* $
     )
-  template_content_begin: '{{script_content_begin}}'
-  template_content_end: |-
-    (?x:
-    # optional html comment end punctuation followed by </template> tag
-      (?: (\s*) (-->) \s* )? (?=</(?i:template){{tag_name_break_char}})
-    # or standalone html comment end punctuation in a line
-    |   ^ (\s*) (-->) \s* $
-    )
+
+  # Vue specific variables
+  # ======================
+
+  template_content_begin: ^|(?=[{{ascii_space}}]*\S)
+  template_content_end: (?=(?:^\s*)?</(?i:template){{tag_name_break}})
 
 contexts:
 
@@ -608,17 +609,10 @@ contexts:
 
   template-jade-content:
     - match: '{{template_content_begin}}'
-      captures:
-        1: comment.block.html punctuation.definition.comment.begin.html
-      pop: 1
       embed: scope:text.jade
       embed_scope: text.jade.embedded.html
       escape: '{{template_content_end}}'
-      escape_captures:
-        1: text.jade.embedded.html
-        2: comment.block.html punctuation.definition.comment.end.html
-        3: text.jade.embedded.html
-        4: comment.block.html punctuation.definition.comment.end.html
+      pop: 1
 
   template-mustache:
     - meta_scope: meta.tag.template.begin.html
@@ -634,17 +628,10 @@ contexts:
 
   template-pug-content:
     - match: '{{template_content_begin}}'
-      captures:
-        1: comment.block.html punctuation.definition.comment.begin.html
-      pop: 1
       embed: scope:text.pug
       embed_scope: text.pug.embedded.html
       escape: '{{template_content_end}}'
-      escape_captures:
-        1: text.pug.embedded.html
-        2: comment.block.html punctuation.definition.comment.end.html
-        3: text.pug.embedded.html
-        4: comment.block.html punctuation.definition.comment.end.html
+      pop: 1
 
   template-slim:
     - meta_scope: meta.tag.template.begin.html
@@ -655,17 +642,10 @@ contexts:
 
   template-slim-content:
     - match: '{{template_content_begin}}'
-      captures:
-        1: comment.block.html punctuation.definition.comment.begin.html
-      pop: 1
       embed: scope:text.slim
       embed_scope: text.slim.embedded.html
       escape: '{{template_content_end}}'
-      escape_captures:
-        1: text.slim.embedded.html
-        2: comment.block.html punctuation.definition.comment.end.html
-        3: text.slim.embedded.html
-        4: comment.block.html punctuation.definition.comment.end.html
+      pop: 1
 
 ###[ TAG ATTRIBUTES ]#########################################################
 

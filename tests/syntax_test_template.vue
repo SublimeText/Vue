@@ -19,25 +19,17 @@
 
     <template lang="jade"> foo --> </template>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
-//                        ^^^^^ text.jade.embedded.html - meta.tag
-//                             ^^^^ - meta.tag - source
-//                             ^^^ comment.block.html punctuation.definition.comment.end.html
+//                        ^^^^^^^^^ text.jade.embedded.html - meta.tag - comment
 //                                 ^^^^^^^^^^^ meta.tag - source
 
     <template lang="jade"> <!-- foo </template>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
-//                        ^^^^^ - meta.tag - source
-//                         ^^^^ punctuation.definition.comment.begin.html
-//                             ^^^^^ text.jade.embedded.html - meta.tag
+//                        ^^^^^^^^^^ text.jade.embedded.html - meta.tag - comment
 //                                  ^^^^^^^^^^^ meta.tag - source
 
     <template lang="jade"> <!-- foo --> </template>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
-//                        ^^^^^ - meta.tag - source
-//                         ^^^^ punctuation.definition.comment.begin.html
-//                             ^^^^^ text.jade.embedded.html - meta.tag
-//                                  ^^^^ - meta.tag - source
-//                                  ^^^ comment.block.html punctuation.definition.comment.end.html
+//                        ^^^^^^^^^^^^^^ text.jade.embedded.html - meta.tag - comment
 //                                      ^^^^^^^^^^^ meta.tag - source
 
 
@@ -46,8 +38,6 @@
 // <- text.jade.embedded.html
 
     </template>
-// <- text.jade.embedded.html
-//^^ text.jade.embedded.html
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.jade
 
 
@@ -60,12 +50,9 @@
 //            ^^^^ entity.other.attribute-name.html
 //                ^ punctuation.separator.key-value.html
 //                       ^ punctuation.definition.tag.end.html
-//                        ^ - text.jade
 
 // <- text.jade.embedded.html
     </template>
-// <- text.jade.embedded.html
-//^^ text.jade.embedded.html
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.jade
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
@@ -80,12 +67,9 @@
 //            ^^^^ entity.other.attribute-name.html
 //                ^ punctuation.separator.key-value.html
 //                      ^ punctuation.definition.tag.end.html
-//                       ^ - text.pug
 
 // <- text.pug.embedded.html
     </template>
-// <- text.pug.embedded.html
-//^^ text.pug.embedded.html
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.pug
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html
@@ -100,12 +84,9 @@
 //            ^^^^ entity.other.attribute-name.html
 //                ^ punctuation.separator.key-value.html
 //                      ^ punctuation.definition.tag.end.html
-//                       ^ - text.slim
 
 // <- text.slim.embedded.html
     </template>
-// <- text.slim.embedded.html
-//^^ text.slim.embedded.html
 //  ^^^^^^^^^^^ meta.tag - meta.tag meta.tag - text.slm
 //  ^^ punctuation.definition.tag.begin.html
 //    ^^^^^^^^ entity.name.tag.template.html

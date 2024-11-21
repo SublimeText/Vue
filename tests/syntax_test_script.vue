@@ -38,8 +38,6 @@
     var i = 0;
 // ^^^^^^^^^^^^ source.js.embedded.html - source source
     </script>
-// <- source.js.embedded.html - source source
-// ^ source.js.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
 
@@ -47,13 +45,11 @@
     <!--
 //^^^^^^ - meta.tag - source
 //  ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//      ^ source.js.embedded.html - source source - meta.tag - comment
     var i = 0;
 // ^^^^^^^^^^^^ source.js.embedded.html - source source - meta.tag
     -->
-//^^ source.js.embedded.html - meta.tag - comment
-//  ^^^^ - source - meta.tag
-//  ^^^ comment.block.html punctuation.definition.comment.end.html
+//  ^^^ comment.block.html punctuation.definition.comment.end.html - source
+//     ^ - comment - source
     var i = 0;
 // ^^^^^^^^^^^^ - source
     </script>
@@ -68,7 +64,6 @@
 //         ^ punctuation.definition.tag.end.html
 //          ^ - meta.tag - comment
 //           ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//               ^ source.js.embedded.html - source source
 
     var foo = 100;
 // <- source.js.embedded.html - source source
@@ -77,12 +72,9 @@
 //     ^^^ source.js.embedded.html keyword.operator - comment
 
     --> </script>
-// ^ source.js.embedded.html - source source
-//  ^^^^^^^^^^^^^^ - source
-//     ^ - meta.tag - comment
-//      ^^^^^^^^^ meta.tag
-//               ^ - meta.tag
-//  ^^^ comment.block.html punctuation.definition.comment.end.html
+//  ^^^ comment.block.html punctuation.definition.comment.end.html - source
+//     ^ - comment - meta.tag - source
+//      ^^^^^^^^^ meta.tag - comment - source
 //      ^^ punctuation.definition.tag.begin.html
 //        ^^^^^^ entity.name.tag
 //              ^ punctuation.definition.tag.end.html
@@ -98,7 +90,6 @@
 //              ^ punctuation.separator.key-value.html
 //               ^^^^^^^^^^^^^^^^^ string.quoted.double.html
 //                                  ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//                                      ^ source.js.embedded.html
 
     var foo = 100;
 // <- source.js.embedded.html - source source
@@ -107,12 +98,9 @@
 //     ^^^ source.js.embedded.html keyword.operator - comment
 
     --> </script>
-// ^ source.js.embedded.html - source source
-//  ^^^^^^^^^^^^^^ - source
-//     ^ - meta.tag - comment
-//      ^^^^^^^^^ meta.tag
-//               ^ - meta.tag
-//  ^^^ comment.block.html punctuation.definition.comment.end.html
+//  ^^^ comment.block.html punctuation.definition.comment.end.html - source
+//     ^ - comment - meta.tag - source
+//      ^^^^^^^^^ meta.tag - comment - source
 //      ^^ punctuation.definition.tag.begin.html
 //        ^^^^^^ entity.name.tag
 //              ^ punctuation.definition.tag.end.html
@@ -128,9 +116,12 @@
 // <- source.js.embedded.html - source source
 // ^^^^^^^^^^^^^^^^ source.js.embedded.html - source source
     </script>
-// <- source.js.embedded.html - source source
-// ^ source.js.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
+
+
+    <!--
+     -- CoffeeScript
+     -->
 
     <script language="coffeescript">  </script>
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag - meta.tag meta.tag - source
@@ -148,109 +139,118 @@
 
 // <- source.coffee.embedded.html - source source
     </script>
-// <- source.coffee.embedded.html - source source
-//^^ source.coffee.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="coffee">
         <!--
 // ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//          ^ source.coffee.embedded.html - source source
         -->
-// ^^^^^ source.coffee.embedded.html - source source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
-//         ^ - source - comment - meta.tag
+//         ^ - comment - source
+    var i = 0;
+// ^^^^^^^^^^^^ - source
     </script>
-// <- - source - comment - meta.tag
-//^^ - source - comment - meta.tag
 //  ^^^^^^^^^ meta.tag - source
+
+
+    <!--
+     -- JSX
+     -->
 
     <script lang="jsx">
 
 // <- source.jsx.embedded.html - source source
     </script>
-// <- source.jsx.embedded.html - source source
-//^^ source.jsx.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="jsx">
         <!--
 // ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//          ^ source.jsx.embedded.html - source source
         -->
-// ^^^^^ source.jsx.embedded.html - source source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
-//         ^ - source - comment - meta.tag
+//         ^ - comment - source
+    var i = 0;
+// ^^^^^^^^^^^^ - source
     </script>
-// <- - source - comment - meta.tag
-//^^ - source - comment - meta.tag
 //  ^^^^^^^^^ meta.tag - source
+
+
+    <!--
+     -- LiveScript
+     -->
 
     <script lang="livescript">
 
 // <- source.livescript.embedded.html - source source
     </script>
-// <- source.livescript.embedded.html - source source
-//^^ source.livescript.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="livescript">
         <!--
 // ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//          ^ source.livescript.embedded.html - source source
         -->
-// ^^^^^ source.livescript.embedded.html - source source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
-//         ^ - source - comment - meta.tag
+//         ^ - comment - source
+    var i = 0;
+// ^^^^^^^^^^^^ - source
     </script>
-// <- - source - comment - meta.tag
-//^^ - source - comment - meta.tag
 //  ^^^^^^^^^ meta.tag - source
 
+
+    <!--
+     -- TypeScript
+     -->
 
     <script lang="ts">
 
 // <- source.ts.embedded.html - source source
     </script>
-// <- source.ts.embedded.html - source source
-//^^ source.ts.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="ts">
         <!--
 // ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//          ^ source.ts.embedded.html - source source
         -->
-// ^^^^^ source.ts.embedded.html - source source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
-//         ^ - source - comment - meta.tag
+//         ^ - comment - source
+    var i = 0;
+// ^^^^^^^^^^^^ - source
     </script>
-// <- - source - comment - meta.tag
-//^^ - source - comment - meta.tag
 //  ^^^^^^^^^ meta.tag - source
+
+
+    <!--
+     -- TSX
+     -->
 
     <script lang="tsx">
 
 // <- source.tsx.embedded.html - source source
     </script>
-// <- source.tsx.embedded.html - source source
-//^^ source.tsx.embedded.html - source source
 //  ^^^^^^^^^ meta.tag - source
 
     <script lang="tsx">
         <!--
 // ^^^^^^^^^ - source
 //      ^^^^ comment.block.html punctuation.definition.comment.begin.html
-//          ^ source.tsx.embedded.html - source source
         -->
-// ^^^^^ source.tsx.embedded.html - source source
+// <- - comment
+//^^^^^^ - comment
 //      ^^^ comment.block.html punctuation.definition.comment.end.html - source
-//         ^ - source - comment - meta.tag
+//         ^ - comment - source
+    var i = 0;
+// ^^^^^^^^^^^^ - source
     </script>
-// <- - source - comment - meta.tag
-//^^ - source - comment - meta.tag
 //  ^^^^^^^^^ meta.tag - source
