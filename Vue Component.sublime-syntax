@@ -847,7 +847,6 @@ contexts:
     - include: immediately-pop
 
   vue-directive-parameter-name:
-    - meta_content_scope: variable.parameter.vue
     - match: '{{vue_parameter_break}}'
       pop: 1
     - match: (?=\[)
@@ -857,7 +856,7 @@ contexts:
 
   vue-dynamic-parameter-name:
     # https://vuejs.org/guide/essentials/template-syntax.html#dynamic-arguments
-    - clear_scopes: 2  # clear `entity.other.attribute-name variable.parameter`
+    - clear_scopes: 1  # clear `entity.other.attribute-name
     - match: \[
       scope: meta.interpolation.vue punctuation.section.interpolation.begin.vue
       embed: scope:source.js#expression-statement
