@@ -6,6 +6,23 @@
  https://github.com/kazupon/vue-i18n
  -->
 
+<i18n src="./common/locales.json"></i18n>
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.i18n.begin.html
+//^^^ entity.name.tag.i18n.html
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.href.html
+//    ^^^ entity.other.attribute-name.href.html
+//       ^ punctuation.separator.key-value.html
+//        ^ meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.path.url.html meta.string.html string.quoted.double.html
+//          ^ punctuation.separator.path.html
+//                 ^ punctuation.separator.path.html
+//                              ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
+//                               ^ punctuation.definition.tag.end.html
+//                                ^^^^^^^ meta.tag.i18n.end.html
+//                                ^^ punctuation.definition.tag.begin.html
+//                                  ^^^^ entity.name.tag.i18n.html
+//                                      ^ punctuation.definition.tag.end.html
+
 <i18n>
 //^^^^ meta.tag.i18n.begin.html
 //^^^ entity.name.tag.i18n.html
