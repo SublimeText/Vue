@@ -845,7 +845,7 @@ contexts:
     - match: '{{vue_parameter_break}}'
       set: vue-directive-modifiers
     - match: '["''`<]'
-      scope: invalid.illegal.attribute-name.html
+      scope: invalid.illegal.attribute-name.vue
 
   vue-directive-modifiers:
     # https://vuejs.org/guide/essentials/event-handling.html#event-modifiers
@@ -860,19 +860,19 @@ contexts:
   vue-directive-assignment:
     - meta_content_scope: meta.directive.vue
     - match: =
-      scope: meta.directive.vue punctuation.separator.key-value.html
+      scope: meta.directive.vue punctuation.separator.key-value.vue
       set: vue-directive-value
     - include: else-pop
 
   vue-directive-value:
     - meta_content_scope: meta.directive.vue
     - match: \"
-      scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+      scope: string.quoted.double.vue punctuation.definition.string.begin.vue
       set:
         - vue-directive-double-quoted-value-end
         - scope:source.js#expression
     - match: \'
-      scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+      scope: string.quoted.single.vue punctuation.definition.string.begin.vue
       set:
         - vue-directive-single-quoted-value-end
         - scope:source.js#expression
@@ -880,12 +880,16 @@ contexts:
 
   vue-directive-double-quoted-value-end:
     - meta_include_prototype: false
-    - meta_scope: meta.directive.value.vue
-    - meta_content_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
-    - include: strings-double-quoted-end
+    - meta_scope: meta.directive.value.vue meta.string.vue
+    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - match: \"
+      scope: string.quoted.double.vue punctuation.definition.string.end.vue
+      pop: 1
 
   vue-directive-single-quoted-value-end:
     - meta_include_prototype: false
-    - meta_scope: meta.directive.value.vue
-    - meta_content_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
-    - include: strings-single-quoted-end
+    - meta_scope: meta.directive.value.vue meta.string.vue
+    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - match: \'
+      scope: string.quoted.single.vue punctuation.definition.string.end.vue
+      pop: 1
