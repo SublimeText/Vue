@@ -863,7 +863,6 @@ contexts:
       set: vue-static-parameter-name
 
   vue-dynamic-parameter-name-end:
-    - clear_scopes: 1
     - meta_include_prototype: false
     - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
     - match: \]

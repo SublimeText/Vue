@@ -112,7 +112,7 @@
 <div v-on:[eventName]="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^^^^^ entity.other.attribute-name.html
+//   ^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
 //   ^^^^ keyword.other.directive.vue
 //       ^ punctuation.separator.vue
 //        ^^^^^^^^^^^ meta.interpolation.vue
@@ -128,7 +128,8 @@
 <div @[eventName]="doSomething()"></div>
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
-//   ^ entity.other.attribute-name.html keyword.other.directive.vue
+//   ^^^^^^^^^^^^ entity.other.attribute-name.html
+//   ^ keyword.other.directive.vue
 //    ^^^^^^^^^^^ meta.interpolation.vue
 //    ^ punctuation.section.interpolation.begin.vue
 //     ^^^^^^^^^ source.js.embedded.vue variable.other.readwrite.js
