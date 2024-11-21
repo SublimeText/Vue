@@ -787,75 +787,45 @@ contexts:
   vue-directive:
     # https://vuejs.org/guide/essentials/list.html#list-rendering
     - match: (?i:v-for){{vue_directive_break}}
-      scope: entity.other.attribute-name.html keyword.control.loop.for.vue
-      push:
-        - vue-directive-meta
-        - vue-directive-assignment
+      scope: meta.directive.vue keyword.control.loop.for.vue
+      push: vue-directive-assignment
     # https://vuejs.org/guide/essentials/conditional.html#conditional-rendering
     - match: (?i:v-if){{vue_directive_break}}
-      scope: entity.other.attribute-name.html keyword.control.conditional.if.vue
-      push:
-        - vue-directive-meta
-        - vue-directive-assignment
+      scope: meta.directive.vue keyword.control.conditional.if.vue
+      push: vue-directive-assignment
     - match: (?i:v-else-if){{vue_directive_break}}
-      scope: entity.other.attribute-name.html keyword.control.conditional.elseif.vue
-      push:
-        - vue-directive-meta
-        - vue-directive-assignment
+      scope: meta.directive.vue keyword.control.conditional.elseif.vue
+      push: vue-directive-assignment
     - match: (?i:v-else){{vue_directive_break}}
-      scope:
-        meta.attribute-with-value.directive.html
-        entity.other.attribute-name.html keyword.control.conditional.else.vue
+      scope: meta.directive.vue keyword.control.conditional.else.vue
     - match: (?i:v-show){{vue_directive_break}}
-      scope: entity.other.attribute-name.html keyword.control.conditional.show.vue
-      push:
-        - vue-directive-meta
-        - vue-directive-assignment
+      scope: meta.directive.vue keyword.control.conditional.show.vue
+      push: vue-directive-assignment
     # https://vuejs.org/guide/essentials/template-syntax.html#directives
     - match: (?i:v-{{vue_directive_char}}+){{vue_directive_break}}
-      scope: keyword.other.directive.vue
-      push:
-        - vue-directive-meta
-        - vue-directive-assignment
-        - vue-directive-modifiers
-        - vue-directive-parameter
+      scope: meta.directive.vue keyword.other.directive.vue
+      push: vue-directive-parameter
     # `@event` is short hand form of `v-on:event`
     # `:attr` is short hand form of `v-bind:attr`
     # `#attr` is short hand form of `??`
     - match: '[@:#]'
-      scope: keyword.other.directive.vue
-      push:
-        - vue-directive-meta
-        - vue-directive-assignment
-        - vue-directive-modifiers
-        - vue-directive-parameter-name
-
-  vue-directive-meta:
-    - meta_include_prototype: false
-    - meta_scope: meta.attribute-with-value.directive.html
-    - include: immediately-pop
-
-  vue-directive-modifiers:
-    # https://vuejs.org/guide/essentials/event-handling.html#event-modifiers
-    - meta_scope: entity.other.attribute-name.html
-    - match: (\.)({{vue_directive_char}}+{{vue_directive_break}})?
-      captures:
-        1: punctuation.separator.vue
-        2: storage.modifier.vue
-    - include: immediately-pop
+      scope: meta.directive.vue keyword.other.directive.vue
+      push: vue-directive-parameter-name
 
   vue-directive-parameter:
+    - meta_include_prototype: false
     # https://vuejs.org/guide/essentials/template-syntax.html#arguments
     - match: ':'
-      scope: punctuation.separator.vue
+      scope: meta.directive.vue punctuation.separator.vue
       set: vue-directive-parameter-name
-    - include: immediately-pop
+    - match: ''
+      set: vue-directive-assignment
 
   vue-directive-parameter-name:
     - meta_include_prototype: false
     # https://vuejs.org/guide/essentials/template-syntax.html#dynamic-arguments
     - match: \[
-      scope: meta.interpolation.vue punctuation.section.interpolation.begin.vue
+      scope: punctuation.section.interpolation.begin.vue
       set:
         - vue-dynamic-parameter-name-end
         - scope:source.js#expression
@@ -864,31 +834,45 @@ contexts:
 
   vue-dynamic-parameter-name-end:
     - meta_include_prototype: false
-    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - meta_scope: meta.directive.parameter.vue meta.interpolation.vue
+    - meta_content_scope: source.js.embedded.vue
     - match: \]
-      scope: meta.interpolation.vue punctuation.section.interpolation.end.vue
-      pop: 1
+      scope: punctuation.section.interpolation.end.vue
+      set: vue-directive-modifiers
 
   vue-static-parameter-name:
+    - meta_scope: meta.directive.parameter.vue entity.other.attribute-name.vue
     - match: '{{vue_parameter_break}}'
-      pop: 1
+      set: vue-directive-modifiers
     - match: '["''`<]'
-      scope: invalid.illegal.attribute-name.html
+      scope: invalid.illegal.attribute-name.vue
+
+  vue-directive-modifiers:
+    # https://vuejs.org/guide/essentials/event-handling.html#event-modifiers
+    - meta_content_scope: meta.directive.modifiers.vue
+    - match: (\.)({{vue_directive_char}}+{{vue_directive_break}})?
+      captures:
+        1: punctuation.separator.vue
+        2: storage.modifier.vue
+    - match: ''
+      set: vue-directive-assignment
 
   vue-directive-assignment:
+    - meta_content_scope: meta.directive.vue
     - match: =
-      scope: punctuation.separator.key-value.html
+      scope: meta.directive.vue punctuation.separator.key-value.vue
       set: vue-directive-value
     - include: else-pop
 
   vue-directive-value:
+    - meta_content_scope: meta.directive.vue
     - match: \"
-      scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+      scope: string.quoted.double.vue punctuation.definition.string.begin.vue
       set:
         - vue-directive-double-quoted-value-end
         - scope:source.js#expression
     - match: \'
-      scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+      scope: string.quoted.single.vue punctuation.definition.string.begin.vue
       set:
         - vue-directive-single-quoted-value-end
         - scope:source.js#expression
@@ -896,10 +880,16 @@ contexts:
 
   vue-directive-double-quoted-value-end:
     - meta_include_prototype: false
-    - meta_content_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
-    - include: strings-double-quoted-end
+    - meta_scope: meta.directive.value.vue meta.string.vue
+    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - match: \"
+      scope: string.quoted.double.vue punctuation.definition.string.end.vue
+      pop: 1
 
   vue-directive-single-quoted-value-end:
     - meta_include_prototype: false
-    - meta_content_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
-    - include: strings-single-quoted-end
+    - meta_scope: meta.directive.value.vue meta.string.vue
+    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - match: \'
+      scope: string.quoted.single.vue punctuation.definition.string.end.vue
+      pop: 1
