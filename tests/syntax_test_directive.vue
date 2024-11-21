@@ -219,3 +219,39 @@
 //                        ^ string.quoted.double.html punctuation.definition.string.begin.html
 //                         ^^^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.function-call
 //                                 ^ string.quoted.double.html punctuation.definition.string.end.html
+
+<!--
+ Nested brackets and quotes
+ -->
+
+<div
+    v-bind:[styles["name"]]='{
+//  ^^^^^^ keyword.other.directive.vue
+//        ^ punctuation.separator.vue
+//         ^^^^^^^^^^^^^^^^ meta.interpolation.vue
+//         ^ punctuation.section.interpolation.begin.vue
+//          ^^^^^^ variable.other.readwrite.js
+//                ^^^^^^^^ meta.brackets.js
+//                ^ punctuation.section.brackets.begin.js
+//                 ^^^^^^ meta.string.js string.quoted.double.js
+//                       ^ punctuation.section.brackets.end.js
+//                        ^ punctuation.section.interpolation.end.vue
+//                         ^ punctuation.separator.key-value.html
+//                          ^ meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+//                           ^^ meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping.js
+        backgroundColor: active ? "green" : "red",
+//                              ^ keyword.operator.ternary.js
+//                                ^^^^^^^ meta.string.js string.quoted.double.js
+//                                        ^ keyword.operator.ternary.js
+//                                          ^^^^^ meta.string.js string.quoted.double.js
+        width: `'${width + "double" + 'single' + quoted}px'` // note the single quotes!
+//             ^^ meta.string string.quoted.other.js
+//               ^^^^^^^^^^ meta.string meta.interpolation.js - string
+//                         ^^^^^^^^ meta.interpolation.js string.quoted.double.js
+//                                 ^^^ meta.string meta.interpolation.js - string
+//                                    ^^^^^^^^ meta.interpolation.js string.quoted.single.js
+//                                            ^^^^^^^^^^ meta.string meta.interpolation.js - string
+//                                                      ^^^^ meta.string string.quoted.other.js
+    }'>
+//^^^ meta.string.html meta.interpolation.vue source.js.embedded.vue meta.mapping.js
+//   ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html
