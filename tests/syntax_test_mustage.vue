@@ -195,20 +195,19 @@
 //                           ^ - meta.tag
 
     <template #[`content-${variable}`]>
-//            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html
-//            ^ entity.other.attribute-name.html keyword.other.directive.vue
+//            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html entity.other.attribute-name.html
+//            ^ keyword.other.directive.vue
 //             ^ meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
-//              ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue - entity.other.attribute-name.html
+//              ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue
 //                                   ^ meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
 //                                    ^ meta.tag - meta.attribute-with-value
 //                                     ^ - meta.tag
 
     <template v-slot:[`content-${variable}`] >
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html
-//            ^^^^^^^ entity.other.attribute-name.html
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html entity.other.attribute-name.html
 //            ^^^^^^ keyword.other.directive.vue
 //                   ^ meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
-//                    ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue - entity.other.attribute-name.html
+//                    ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue
 //                                         ^ meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
 //                                          ^ meta.tag - meta.interpolation
 //                                           ^ meta.tag - meta.attribute-with-value

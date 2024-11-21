@@ -771,11 +771,16 @@ contexts:
   mustache-templates:
     - match: '{{'
       scope: meta.interpolation.vue punctuation.section.interpolation.begin.html
-      embed: scope:source.js
-      embed_scope: meta.interpolation.vue source.js.embedded.vue
-      escape: '}}'
-      escape_captures:
-        0: meta.interpolation.vue punctuation.section.interpolation.end.html
+      push:
+        - mustache-template-end
+        - scope:source.js#expression
+
+  mustache-template-end:
+    - meta_include_prototype: false
+    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - match: '}}'
+      scope: meta.interpolation.vue punctuation.section.interpolation.end.html
+      pop: 1
 
 ###[ VUE DIRECTIVES ]#########################################################
 
@@ -847,24 +852,28 @@ contexts:
     - include: immediately-pop
 
   vue-directive-parameter-name:
-    - match: '{{vue_parameter_break}}'
-      pop: 1
-    - match: (?=\[)
-      push: vue-dynamic-parameter-name
-    - match: '["''`<]'
-      scope: invalid.illegal.attribute-name.html
-
-  vue-dynamic-parameter-name:
+    - meta_include_prototype: false
     # https://vuejs.org/guide/essentials/template-syntax.html#dynamic-arguments
-    - clear_scopes: 1  # clear `entity.other.attribute-name
     - match: \[
       scope: meta.interpolation.vue punctuation.section.interpolation.begin.vue
-      embed: scope:source.js#expression-statement
-      embed_scope: meta.interpolation.vue source.js.embedded.vue
-      escape: \]
-      escape_captures:
-        0: meta.interpolation.vue punctuation.section.interpolation.end.vue
-    - include: immediately-pop
+      set:
+        - vue-dynamic-parameter-name-end
+        - scope:source.js#expression
+    - match: ''
+      set: vue-static-parameter-name
+
+  vue-dynamic-parameter-name-end:
+    - meta_include_prototype: false
+    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - match: \]
+      scope: meta.interpolation.vue punctuation.section.interpolation.end.vue
+      pop: 1
+
+  vue-static-parameter-name:
+    - match: '{{vue_parameter_break}}'
+      pop: 1
+    - match: '["''`<]'
+      scope: invalid.illegal.attribute-name.html
 
   vue-directive-assignment:
     - match: =
@@ -875,18 +884,22 @@ contexts:
   vue-directive-value:
     - match: \"
       scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
-      embed: scope:source.js#expression-statement
-      embed_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
-      escape: \"
-      escape_captures:
-        0: meta.attribute-with-value.directive.html meta.string.html string.quoted.double.html
-          punctuation.definition.string.end.html
+      set:
+        - vue-directive-double-quoted-value-end
+        - scope:source.js#expression
     - match: \'
       scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
-      embed: scope:source.js#expression-statement
-      embed_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
-      escape: \'
-      escape_captures:
-        0: meta.attribute-with-value.directive.html meta.string.html string.quoted.single.html
-          punctuation.definition.string.end.html
+      set:
+        - vue-directive-single-quoted-value-end
+        - scope:source.js#expression
     - include: else-pop
+
+  vue-directive-double-quoted-value-end:
+    - meta_include_prototype: false
+    - meta_content_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
+    - include: strings-double-quoted-end
+
+  vue-directive-single-quoted-value-end:
+    - meta_include_prototype: false
+    - meta_content_scope: meta.string.html meta.interpolation.vue source.js.embedded.vue
+    - include: strings-single-quoted-end
