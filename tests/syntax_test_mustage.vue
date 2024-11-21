@@ -154,30 +154,10 @@
 //                     ^ meta.tag - meta.attribute-with-value
 //                      ^ - meta.tag
 
-    <p @handler="function_call($event)">
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ punctuation.definition.attribute.html
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                                    ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                                     ^ meta.tag - meta.attribute-with-value
-//                                      ^ - meta.tag
-
-    <p @handler='function_call($event)'>
-//  ^^^ meta.tag - meta.attribute-with-value
-//     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ punctuation.definition.attribute.html
-//              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//               ^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
-//                                    ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
-//                                     ^ meta.tag - meta.attribute-with-value
-//                                      ^ - meta.tag
-
     <p #handler="variable">
 //  ^^^ meta.tag - meta.attribute-with-value
 //     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ punctuation.definition.attribute.html
+//     ^ keyword.control.directive.vue
 //              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
 //               ^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
 //                       ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
@@ -187,7 +167,7 @@
     <p #handler='variable'>
 //  ^^^ meta.tag - meta.attribute-with-value
 //     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ punctuation.definition.attribute.html
+//     ^ keyword.control.directive.vue
 //              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
 //               ^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
 //                       ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
@@ -197,7 +177,7 @@
     <p :handler="expression">
 //  ^^^ meta.tag - meta.attribute-with-value
 //     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ punctuation.definition.attribute.html
+//     ^ keyword.control.directive.vue
 //              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
 //               ^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
 //                         ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
@@ -207,7 +187,7 @@
     <p :handler='expression'>
 //  ^^^ meta.tag - meta.attribute-with-value
 //     ^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html - meta.string
-//     ^ punctuation.definition.attribute.html
+//     ^ keyword.control.directive.vue
 //              ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
 //               ^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html meta.string.html meta.interpolation.vue source.js.embedded.vue
 //                         ^ meta.tag meta.attribute-with-value.directive.html meta.string.html - meta.interpolation
@@ -216,7 +196,7 @@
 
     <template #[`content-${variable}`]>
 //            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html
-//            ^ entity.other.attribute-name.html
+//            ^ entity.other.attribute-name.html keyword.control.directive.vue
 //             ^ meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
 //              ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue - entity.other.attribute-name.html
 //                                   ^ meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
@@ -226,6 +206,7 @@
     <template v-slot:[`content-${variable}`] >
 //            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.directive.html
 //            ^^^^^^^ entity.other.attribute-name.html
+//            ^^^^^^ keyword.control.directive.vue
 //                   ^ meta.interpolation.vue punctuation.section.interpolation.begin.vue - source.js.embedded
 //                    ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue source.js.embedded.vue - entity.other.attribute-name.html
 //                                         ^ meta.interpolation.vue punctuation.section.interpolation.end.vue - source.js.embedded
