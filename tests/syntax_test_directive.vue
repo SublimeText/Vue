@@ -85,7 +85,6 @@
 //   ^^^^^^^^^^ entity.other.attribute-name.html - entity.other entity.other
 //   ^^^^ keyword.other.directive.vue
 //       ^ punctuation.separator.vue
-//        ^^^^^ variable.parameter.vue
 //             ^ punctuation.separator.key-value.html
 //              ^^^^^^^^^^^^^^^ meta.string.html
 //              ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -97,7 +96,6 @@
 //   ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 //   ^^^^^^ entity.other.attribute-name.html - entity.other entity.other
 //   ^ keyword.other.directive.vue
-//    ^^^^^ variable.parameter.vue
 //         ^ punctuation.separator.key-value.html
 //          ^^^^^^^^^^^^^^^ meta.string.html
 //          ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -155,9 +153,8 @@
 // ^^^^^^^^^^^^^^^ entity.other.attribute-name.html
 // ^^^^ keyword.other.directive.vue
 //     ^ punctuation.separator.vue
-//      ^^^^^ variable.parameter.vue
 //           ^ punctuation.separator.vue
-//            ^^^^ constant.other.vue
+//            ^^^^ storage.modifier.vue
 //                ^ punctuation.separator.key-value.html
 //                 ^^^^^^^^^^ meta.string.html
 //                 ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -170,9 +167,8 @@
 // ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^ entity.other.attribute-name.html
 // ^ keyword.other.directive.vue
-//  ^^^^^ variable.parameter.vue
 //       ^ punctuation.separator.vue
-//        ^^^^ constant.other.vue
+//        ^^^^ storage.modifier.vue
 //            ^ punctuation.separator.key-value.html
 //             ^^^^^^^^^^ meta.string.html
 //             ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -185,11 +181,10 @@
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
 // ^ keyword.other.directive.vue
-//  ^^^^^ variable.parameter.vue
 //       ^ punctuation.separator.vue
-//        ^^^^ constant.other.vue
+//        ^^^^ storage.modifier.vue
 //            ^ punctuation.separator.vue
-//             ^^^^^^^ constant.other.vue
+//             ^^^^^^^ storage.modifier.vue
 //                    ^ punctuation.separator.key-value.html
 //                     ^^^^^^^^^^ meta.string.html
 //                     ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -202,9 +197,9 @@
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
 // ^^^^ keyword.other.directive.vue
 //     ^ punctuation.separator.vue
-//      ^^^^^^^^^^^^^ variable.parameter.vue - punctuation
+//           ^ - punctuation
 //                   ^ punctuation.separator.vue
-//                    ^^^^^^^ constant.other.vue
+//                    ^^^^^^^ storage.modifier.vue
 //                           ^ punctuation.separator.key-value.html
 //                            ^^^^^^^^^^ meta.string.html
 //                            ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -216,9 +211,9 @@
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.directive.html
 // ^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
 // ^ keyword.other.directive.vue
-//  ^^^^^^^^^^^^^ variable.parameter.vue - punctuation
+//       ^ - punctuation
 //               ^ punctuation.separator.vue
-//                ^^^^^^^ constant.other.vue
+//                ^^^^^^^ storage.modifier.vue
 //                       ^ punctuation.separator.key-value.html
 //                        ^^^^^^^^^^ meta.string.html
 //                        ^ string.quoted.double.html punctuation.definition.string.begin.html
