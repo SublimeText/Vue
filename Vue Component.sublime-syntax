@@ -836,7 +836,7 @@ contexts:
     - match: (\.)({{vue_directive_char}}+{{vue_directive_break}})?
       captures:
         1: punctuation.separator.vue
-        2: constant.other.vue
+        2: storage.modifier.vue
     - include: immediately-pop
 
   vue-directive-parameter:

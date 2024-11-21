@@ -154,7 +154,7 @@
 // ^^^^ keyword.other.directive.vue
 //     ^ punctuation.separator.vue
 //           ^ punctuation.separator.vue
-//            ^^^^ constant.other.vue
+//            ^^^^ storage.modifier.vue
 //                ^ punctuation.separator.key-value.html
 //                 ^^^^^^^^^^ meta.string.html
 //                 ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -168,7 +168,7 @@
 // ^^^^^^^^^^^ entity.other.attribute-name.html
 // ^ keyword.other.directive.vue
 //       ^ punctuation.separator.vue
-//        ^^^^ constant.other.vue
+//        ^^^^ storage.modifier.vue
 //            ^ punctuation.separator.key-value.html
 //             ^^^^^^^^^^ meta.string.html
 //             ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -182,9 +182,9 @@
 // ^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.html
 // ^ keyword.other.directive.vue
 //       ^ punctuation.separator.vue
-//        ^^^^ constant.other.vue
+//        ^^^^ storage.modifier.vue
 //            ^ punctuation.separator.vue
-//             ^^^^^^^ constant.other.vue
+//             ^^^^^^^ storage.modifier.vue
 //                    ^ punctuation.separator.key-value.html
 //                     ^^^^^^^^^^ meta.string.html
 //                     ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -199,7 +199,7 @@
 //     ^ punctuation.separator.vue
 //           ^ - punctuation
 //                   ^ punctuation.separator.vue
-//                    ^^^^^^^ constant.other.vue
+//                    ^^^^^^^ storage.modifier.vue
 //                           ^ punctuation.separator.key-value.html
 //                            ^^^^^^^^^^ meta.string.html
 //                            ^ string.quoted.double.html punctuation.definition.string.begin.html
@@ -213,7 +213,7 @@
 // ^ keyword.other.directive.vue
 //       ^ - punctuation
 //               ^ punctuation.separator.vue
-//                ^^^^^^^ constant.other.vue
+//                ^^^^^^^ storage.modifier.vue
 //                       ^ punctuation.separator.key-value.html
 //                        ^^^^^^^^^^ meta.string.html
 //                        ^ string.quoted.double.html punctuation.definition.string.begin.html
