@@ -5,12 +5,12 @@
 
     <script> var i = 0; </script>
 //  ^^^^^^^^ meta.tag - source
-//          ^^^^^^^^^^^^ source.js.embedded.html - meta.tag
+//          ^^^^^^^^^^^^ source.jsx.embedded.html - meta.tag
 //                      ^^^^^^^^^ meta.tag - source
 
     <script> var i = 0; --> </script>
 //  ^^^^^^^^ meta.tag - source
-//          ^^^^^^^^^^^^ source.js.embedded.html - meta.tag
+//          ^^^^^^^^^^^^ source.jsx.embedded.html - meta.tag
 //                      ^^^^ - meta.tag - source
 //                      ^^^ comment.block.html punctuation.definition.comment.end.html
 //                          ^^^^^^^^^ meta.tag - source
@@ -18,7 +18,7 @@
     <script> <!-- var i = 0; </script>
 //  ^^^^^^^^ meta.tag - source
 //          ^^^^^ - meta.tag - source
-//               ^^^^^^^^^^^^ source.js.embedded.html - meta.tag
+//               ^^^^^^^^^^^^ source.jsx.embedded.html - meta.tag
 //                           ^^^^^^^^^ meta.tag - source
 //           ^^^^ punctuation.definition.comment.begin.html
 
@@ -26,7 +26,7 @@
 //  ^^^^^^^^ meta.tag - source
 //          ^^^^^ - meta.tag - source
 //           ^^^^ punctuation.definition.comment.begin.html
-//               ^^^^^^^^^^^^ source.js.embedded.html - meta.tag
+//               ^^^^^^^^^^^^ source.jsx.embedded.html - meta.tag
 //                           ^^^^ - meta.tag - source
 //                           ^^^ comment.block.html punctuation.definition.comment.end.html
 //                               ^^^^^^^^^ meta.tag - source
@@ -34,9 +34,33 @@
 
     <script>
 
-// <- source.js.embedded.html
+// <- source.jsx.embedded.html
     var i = 0;
-// ^^^^^^^^^^^^ source.js.embedded.html - source source
+// ^^^^^^^^^^^^ source.jsx.embedded.html - source source
+    export default {
+      render () {
+        return <div>{ this.foo }</div>
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.jsx.embedded.html
+//      ^^^^^^ keyword.control.flow.return.js
+//             ^^^^^^^^^^^^^^^^^^^^^^^ meta.jsx.js
+//             ^^^^^ meta.tag
+//             ^ punctuation.definition.tag.begin.js
+//              ^^^ entity.name.tag
+//                 ^ punctuation.definition.tag.end.js
+//                  ^^^^^^^^^^^^ meta.interpolation.js
+//                  ^ punctuation.definition.interpolation.begin.js
+//                   ^^^^^^^^^^ source.js.embedded.jsx
+//                             ^ punctuation.definition.interpolation.end.js
+//                              ^^^^^^ meta.tag
+//                              ^^ punctuation.definition.tag.begin.js
+//                                ^^^ entity.name.tag
+//                                   ^ punctuation.definition.tag.end.js
+      }
+//^^^^^^ source.jsx.embedded.html
+//    ^ punctuation.section
+    }
+//^^^^ source.jsx.embedded.html
+//  ^ punctuation.section
     </script>
 //  ^^^^^^^^^ meta.tag - source
 
@@ -46,7 +70,7 @@
 //^^^^^^ - meta.tag - source
 //  ^^^^ comment.block.html punctuation.definition.comment.begin.html
     var i = 0;
-// ^^^^^^^^^^^^ source.js.embedded.html - source source - meta.tag
+// ^^^^^^^^^^^^ source.jsx.embedded.html - source source - meta.tag
     -->
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
 //     ^ - comment - source
@@ -66,10 +90,10 @@
 //           ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
     var foo = 100;
-// <- source.js.embedded.html - source source
+// <- source.jsx.embedded.html - source source
 
     (a --> b);
-//     ^^^ source.js.embedded.html keyword.operator - comment
+//     ^^^ source.jsx.embedded.html keyword.operator - comment
 
     --> </script>
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
@@ -92,10 +116,10 @@
 //                                  ^^^^ comment.block.html punctuation.definition.comment.begin.html
 
     var foo = 100;
-// <- source.js.embedded.html - source source
+// <- source.jsx.embedded.html - source source
 
     (a --> b);
-//     ^^^ source.js.embedded.html keyword.operator - comment
+//     ^^^ source.jsx.embedded.html keyword.operator - comment
 
     --> </script>
 //  ^^^ comment.block.html punctuation.definition.comment.end.html - source
@@ -113,8 +137,8 @@
     application/jAvAsCrIpT>
 //  ^^^^^^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value - meta.attribute-with-value meta.attribute-with-value
     var foo = 100;
-// <- source.js.embedded.html - source source
-// ^^^^^^^^^^^^^^^^ source.js.embedded.html - source source
+// <- source.jsx.embedded.html - source source
+// ^^^^^^^^^^^^^^^^ source.jsx.embedded.html - source source
     </script>
 //  ^^^^^^^^^ meta.tag - source
 
