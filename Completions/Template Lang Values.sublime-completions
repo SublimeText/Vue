@@ -1,0 +1,25 @@
+{
+	"scope": "text.html.vue meta.tag.template meta.attribute-with-value.lang",
+	"completions": [
+		{
+			"trigger": "haml",
+			"kind": ["type", "t", "Language Type"],
+			"details": "HAML"
+		},
+		{
+			"trigger": "jade",
+			"kind": ["type", "t", "Language Type"],
+			"details": "Jade"
+		},
+		{
+			"trigger": "pug",
+			"kind": ["type", "t", "Language Type"],
+			"details": "Pug"
+		},
+		{
+			"trigger": "slm",
+			"kind": ["type", "t", "Language Type"],
+			"details": "Slim"
+		},
+	]
+}
