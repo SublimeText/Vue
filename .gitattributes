@@ -8,3 +8,4 @@ preview.* export-ignore
 
 # development
 tests/ export-ignore
+make.cmd export-ignore
