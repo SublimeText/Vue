@@ -11,7 +11,7 @@ goto :usage
 
     for %%d in ("%~dp0.") do set package=%%~nxd
 
-    echo Createing assets for "%package%"...
+    echo Creating assets for "%package%"...
 
     :: create tag and download asset for ST4107+
     set build=4107
