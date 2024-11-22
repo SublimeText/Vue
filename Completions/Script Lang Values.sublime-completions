@@ -29,7 +29,7 @@
 		{
 			"trigger": "jsx",
 			"kind": ["type", "t", "Language Type"],
-			"details": "TSX"
+			"details": "JSX"
 		},
 		{
 			"trigger": "javascript",
