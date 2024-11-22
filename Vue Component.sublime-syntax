@@ -74,11 +74,6 @@ contexts:
         - script-coffeescript
         - tag-lang-attribute-meta
         - tag-generic-attribute-value
-    - match: (?i)(?=jsx{{unquoted_attribute_break}}|'jsx'|"jsx")
-      set:
-        - script-jsx
-        - tag-lang-attribute-meta
-        - tag-generic-attribute-value
     - match: (?i)(?=livescript{{unquoted_attribute_break}}|'livescript'|"livescript")
       set:
         - script-livescript
@@ -146,15 +141,10 @@ contexts:
         3: source.coffee.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
-  script-jsx:
-    - meta_include_prototype: false
-    - meta_scope: meta.tag.script.begin.html
-    - match: '>'
-      scope: punctuation.definition.tag.end.html
-      set: script-jsx-content
-    - include: script-common
-
-  script-jsx-content:
+  script-javascript-content:
+    # Note: Augment default JavaScript by JSX
+    # as Vue supports writing components via JSX tags by default
+    # and JSX highlights/scopes plain JavaScript without issues.
     - meta_include_prototype: false
     - match: '{{script_content_begin}}'
       captures:
