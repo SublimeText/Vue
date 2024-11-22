@@ -32,7 +32,7 @@ goto :usage
     call git archive --format zip -o "%archive%" %tag%
 
     :: create github release (on main branch using latest tag)
-    call git push --tags --force
+    call git push origin %tag%
     gh release create --target %branch% -t "%package% %2" "%tag%" %assets%
     del /f /q *.sublime-package
     git fetch
