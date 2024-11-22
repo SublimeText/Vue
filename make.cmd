@@ -8,16 +8,17 @@ goto :usage
 
 :RELEASE
     if "%2"== "" goto :usage
+    set version=%2
 
     for %%d in ("%~dp0.") do set package=%%~nxd
 
-    echo Createing assets for "%package%"...
+    echo Creating assets for "%package%"...
 
     :: create tag and download asset for ST4107+
     set build=4107
     set branch=st%build%
-    set tag=%build%-%2
-    set archive=%package%-%2-st%build%.sublime-package
+    set tag=%build%-%version%
+    set archive=%package%-%version%-st%build%.sublime-package
     set assets="%archive%#%archive%"
     call git tag -f %tag% %branch%
     call git archive --format zip -o "%archive%" %tag%
@@ -25,15 +26,15 @@ goto :usage
     :: create tag and download asset for ST4126+ (main branch)
     set build=4126
     set branch=main
-    set tag=%build%-%2
-    set archive=%package%-%2-st%build%.sublime-package
+    set tag=%build%-%version%
+    set archive=%package%-%version%-st%build%.sublime-package
     set assets=%assets% "%archive%#%archive%"
     call git tag -f %tag% %branch%
     call git archive --format zip -o "%archive%" %tag%
 
     :: create github release (on main branch using latest tag)
-    call git push --tags --force
-    gh release create --target %branch% -t "%package% %2" "%tag%" %assets%
+    call git push origin %tag%
+    gh release create --target %branch% -t "%package% %version%" "%tag%" %assets%
     del /f /q *.sublime-package
     git fetch
     goto :eof
