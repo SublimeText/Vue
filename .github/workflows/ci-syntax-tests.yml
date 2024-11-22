@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - st4107
     paths:
       - '.github/workflows/ci-syntax-tests.yml'
       - '**.sublime-syntax'
