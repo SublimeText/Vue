@@ -6,6 +6,24 @@
  https://vuejs.org/guide/essentials/conditional.html#conditional-rendering
  -->
 
+<div v-if=''></div>
+//^^^^^^^^^^^^^^^^^ meta.tag
+//   ^^^^ meta.directive.vue keyword.control.conditional.if.vue
+//       ^ meta.directive.vue punctuation.separator.key-value.vue
+//        ^^ meta.directive.value.vue meta.string.vue
+//        ^ string.quoted.single.vue punctuation.definition.string.begin.vue
+//         ^ string.quoted.single.vue punctuation.definition.string.end.vue
+//          ^ punctuation.definition.tag.end.html
+
+<div v-if=""></div>
+//^^^^^^^^^^^^^^^^^ meta.tag
+//   ^^^^ meta.directive.vue keyword.control.conditional.if.vue
+//       ^ meta.directive.vue punctuation.separator.key-value.vue
+//        ^^ meta.directive.value.vue meta.string.vue
+//        ^ string.quoted.double.vue punctuation.definition.string.begin.vue
+//         ^ string.quoted.double.vue punctuation.definition.string.end.vue
+//          ^ punctuation.definition.tag.end.html
+
 <div v-if="seen"></div>
 //^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //   ^^^^ meta.directive.vue keyword.control.conditional.if.vue
