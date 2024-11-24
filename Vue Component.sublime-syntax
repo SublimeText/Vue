@@ -719,28 +719,28 @@ contexts:
     - meta_content_scope: meta.directive.vue
     - match: \"
       scope: string.quoted.double.vue punctuation.definition.string.begin.vue
-      set:
-        - vue-directive-double-quoted-value-end
-        - scope:source.js#expression
+      set: vue-directive-double-quoted-value
     - match: \'
       scope: string.quoted.single.vue punctuation.definition.string.begin.vue
-      set:
-        - vue-directive-single-quoted-value-end
-        - scope:source.js#expression
+      set: vue-directive-single-quoted-value
     - include: else-pop
 
-  vue-directive-double-quoted-value-end:
+  vue-directive-double-quoted-value:
     - meta_include_prototype: false
     - meta_scope: meta.directive.value.vue meta.string.vue
     - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
     - match: \"
       scope: string.quoted.double.vue punctuation.definition.string.end.vue
       pop: 1
+    - match: (?=\S)
+      push: scope:source.js#expression
 
-  vue-directive-single-quoted-value-end:
+  vue-directive-single-quoted-value:
     - meta_include_prototype: false
     - meta_scope: meta.directive.value.vue meta.string.vue
     - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
     - match: \'
       scope: string.quoted.single.vue punctuation.definition.string.end.vue
       pop: 1
+    - match: (?=\S)
+      push: scope:source.js#expression
