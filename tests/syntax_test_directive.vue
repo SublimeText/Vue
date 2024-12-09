@@ -290,6 +290,44 @@
 //                     ^ meta.tag - meta.directive
 //                      ^ - meta.tag
 
+    <p v-model:param="post.weight">
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^ meta.tag meta.directive.vue keyword.other.directive.vue
+//            ^ meta.tag meta.directive.vue punctuation.separator.vue
+//             ^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//                  ^ meta.tag meta.directive.vue punctuation.separator.key-value.vue
+//                   ^ meta.tag meta.directive.value.vue meta.string.vue - meta.interpolation
+//                    ^^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.vue meta.interpolation.vue source.js.embedded.vue
+//                               ^ meta.tag meta.directive.value.vue meta.string.vue - meta.interpolation
+//                                ^ meta.tag - meta.directive
+//                                 ^ - meta.tag
+
+    <p v-model:param.modifier="post.weight">
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^ meta.tag meta.directive.vue keyword.other.directive.vue
+//            ^ meta.tag meta.directive.vue punctuation.separator.vue
+//             ^^^^^ meta.tag meta.directive.parameter.vue entity.other.attribute-name.vue - meta.string
+//                  ^ meta.tag meta.directive.modifiers.vue punctuation.separator.vue
+//                   ^^^^^^^^ meta.tag meta.directive.modifiers.vue storage.modifier.vue
+//                           ^ meta.tag meta.directive.vue punctuation.separator.key-value.vue
+//                            ^ meta.tag meta.directive.value.vue meta.string.vue - meta.interpolation
+//                             ^^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.vue meta.interpolation.vue source.js.embedded.vue
+//                                        ^ meta.tag meta.directive.value.vue meta.string.vue - meta.interpolation
+//                                         ^ meta.tag - meta.directive
+//                                          ^ - meta.tag
+
+    <p v-model.modifier="post.weight">
+//  ^^^ meta.tag - meta.directive
+//     ^^^^^^^ meta.tag meta.directive.vue keyword.other.directive.vue
+//            ^ meta.tag meta.directive.modifiers.vue punctuation.separator.vue
+//             ^^^^^^^^ meta.tag meta.directive.modifiers.vue storage.modifier.vue
+//                     ^ meta.tag meta.directive.vue punctuation.separator.key-value.vue
+//                      ^ meta.tag meta.directive.value.vue meta.string.vue - meta.interpolation
+//                       ^^^^^^^^^^^ meta.tag meta.directive.value.vue meta.string.vue meta.interpolation.vue source.js.embedded.vue
+//                                  ^ meta.tag meta.directive.value.vue meta.string.vue - meta.interpolation
+//                                   ^ meta.tag - meta.directive
+//                                    ^ - meta.tag
+
     <p #handler="variable">
 //  ^^^ meta.tag - meta.directive
 //     ^ meta.tag meta.directive.vue keyword.other.directive.vue - meta.string

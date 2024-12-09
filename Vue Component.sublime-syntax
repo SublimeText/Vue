@@ -785,7 +785,7 @@ contexts:
       scope: meta.directive.vue punctuation.separator.vue
       set: vue-directive-parameter-name
     - match: ''
-      set: vue-directive-assignment
+      set: vue-directive-modifiers
 
   vue-directive-parameter-name:
     - meta_include_prototype: false
