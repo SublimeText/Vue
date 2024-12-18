@@ -10,16 +10,16 @@
      -->
 
     <h1> {{ foo.text }} </h1>
-//       ^^^^^^^^^^^^^^ meta.interpolation.vue
-//       ^^ punctuation.section.interpolation.begin.html
+//       ^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//       ^^ punctuation.section.embedded.begin.html
 //         ^^^^^^^^^^ source.js.embedded.vue
-//                   ^^ punctuation.section.interpolation.end.html
+//                   ^^ punctuation.section.embedded.end.html
 
     <p {{foo.attrib}}>
-//     ^^^^^^^^^^^^^^ meta.interpolation.vue
-//     ^^ punctuation.section.interpolation.begin.html
+//     ^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//     ^^ punctuation.section.embedded.begin.html
 //       ^^^^^^^^^^ source.js.embedded.vue
-//                 ^^ punctuation.section.interpolation.end.html
+//                 ^^ punctuation.section.embedded.end.html
 
     <!--
     Mustache tags may only contain expressions!
@@ -28,17 +28,17 @@
     -->
 
     {{ number + 1 }}
-//  ^^^^^^^^^^^^^^^^ meta.interpolation.vue
-//  ^^ punctuation.section.interpolation.begin.html
+//  ^^^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//  ^^ punctuation.section.embedded.begin.html
 //    ^^^^^^^^^^^^ source.js.embedded.vue
 //     ^^^^^^ variable.other.readwrite.js
 //            ^ keyword.operator.arithmetic.js
 //              ^ meta.number.integer.decimal.js constant.numeric.value.js
-//                ^^ punctuation.section.interpolation.end.html
+//                ^^ punctuation.section.embedded.end.html
 
     {{ ok ? 'YES' : 'NO' }}
-//  ^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue
-//  ^^ punctuation.section.interpolation.begin.html
+//  ^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//  ^^ punctuation.section.embedded.begin.html
 //    ^^^^^^^^^^^^^^^^^^^ source.js.embedded.vue
 //     ^^ variable.other.readwrite.js
 //        ^ keyword.operator.ternary.js
@@ -49,11 +49,11 @@
 //                  ^^^^ meta.string.js string.quoted.single.js
 //                  ^ punctuation.definition.string.begin.js
 //                     ^ punctuation.definition.string.end.js
-//                       ^^ punctuation.section.interpolation.end.html
+//                       ^^ punctuation.section.embedded.end.html
 
     {{ message.split('').reverse().join('') }}
-//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue
-//  ^^ punctuation.section.interpolation.begin.html
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//  ^^ punctuation.section.embedded.begin.html
 //    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vue
 //     ^^^^^^^ variable.other.readwrite.js
 //            ^ punctuation.accessor.js
@@ -77,30 +77,30 @@
 //                                      ^ punctuation.definition.string.begin.js
 //                                       ^ punctuation.definition.string.end.js
 //                                        ^ punctuation.section.group.end.js
-//                                          ^^ punctuation.section.interpolation.end.html
+//                                          ^^ punctuation.section.embedded.end.html
 
     <div :id="`list-${id}`"></div>
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
 //           ^^^^^^^^^^^^^ meta.string.vue
-//           ^ string.quoted.double.vue punctuation.definition.string.begin.vue - meta.interpolation
-//            ^^^^^^ meta.interpolation.vue source.js.embedded.vue meta.string string
-//                  ^^^^^ meta.interpolation.vue source.js.embedded.vue meta.string meta.interpolation.js
-//                       ^ meta.interpolation.vue source.js.embedded.vue meta.string string
-//                        ^ string.quoted.double.vue punctuation.definition.string.end.vue - meta.interpolation
+//           ^ string.quoted.double.vue punctuation.definition.string.begin.vue - meta.embedded.expression
+//            ^^^^^^ meta.embedded.expression.vue source.js.embedded.vue meta.string string
+//                  ^^^^^ meta.embedded.expression.vue source.js.embedded.vue meta.string meta.interpolation.js
+//                       ^ meta.embedded.expression.vue source.js.embedded.vue meta.string string
+//                        ^ string.quoted.double.vue punctuation.definition.string.end.vue - meta.embedded.expression
 
     <!-- this is a statement, not an expression: -->
     {{ var a = 1 }}
-//  ^^^^^^^^^^^^^^^ meta.interpolation.vue
-//  ^^ punctuation.section.interpolation.begin.html
+//  ^^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//  ^^ punctuation.section.embedded.begin.html
 //    ^^^^^^^^^^^ source.js.embedded.vue
-//               ^^ punctuation.section.interpolation.end.html
+//               ^^ punctuation.section.embedded.end.html
 
     <!-- flow control won't work either, use ternary expressions -->
     {{ if (ok) { return message } }}
-//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.vue
-//  ^^ punctuation.section.interpolation.begin.html
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.vue
+//  ^^ punctuation.section.embedded.begin.html
 //    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vue
-//                                ^^ punctuation.section.interpolation.end.html
+//                                ^^ punctuation.section.embedded.end.html
 
 
     <!--
@@ -112,13 +112,13 @@
      -->
 
     <p attrib="{{ foo.value }}" >
-//            ^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html meta.string.html - meta.interpolation
+//            ^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html meta.string.html - meta.embedded.expression
 
     <p attrib='{{ foo.value }}' >
-//            ^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html meta.string.html - meta.interpolation
+//            ^^^^^^^^^^^^^^^^^ meta.tag meta.attribute-with-value.html meta.string.html - meta.embedded.expression
 
     <p attrib={{ foo.value }} >
-//            ^^ meta.tag meta.attribute-with-value.html meta.string.html string.unquoted.html - meta.interpolation
+//            ^^ meta.tag meta.attribute-with-value.html meta.string.html string.unquoted.html - meta.embedded.expression
 //               ^^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html
 //                         ^^ meta.attribute-with-value.html entity.other.attribute-name.html
 
@@ -127,12 +127,12 @@
 //  ^^^ punctuation.definition.tag.begin.html
 //     ^^^^^ keyword.declaration.cdata.html
 //          ^ punctuation.definition.tag.begin.html
-//           ^^^^^^^^ string.unquoted.cdata.html - meta.interpolation
-//                   ^^^^^^^^^^^^^^^^ meta.interpolation.vue - string
-//                   ^^ punctuation.section.interpolation.begin.html
+//           ^^^^^^^^ string.unquoted.cdata.html - meta.embedded.expression
+//                   ^^^^^^^^^^^^^^^^ meta.embedded.expression.vue - string
+//                   ^^ punctuation.section.embedded.begin.html
 //                     ^^^^^^^^^^^^ source.js.embedded.vue variable.other.readwrite.js
-//                                 ^^ punctuation.section.interpolation.end.html
-//                                   ^^^^^^^^^ string.unquoted.cdata.html - meta.interpolation
+//                                 ^^ punctuation.section.embedded.end.html
+//                                   ^^^^^^^^^ string.unquoted.cdata.html - meta.embedded.expression
 //                                            ^^^ punctuation.definition.tag.end.html
 
 </html>
