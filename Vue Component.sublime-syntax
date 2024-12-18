@@ -67,7 +67,7 @@ contexts:
 
   prototype:
     - meta_prepend: true
-    - include: mustache-templates
+    - include: mustache-interpolations
 
   tag-html:
     - meta_prepend: true
@@ -717,36 +717,38 @@ contexts:
   cdata-content:
     - meta_prepend: true
     - meta_include_prototype: false
-    - include: mustache-interpolations
+    - include: mustache-string-interpolations
 
   strings-common-content:
     - meta_prepend: true
-    - include: mustache-interpolations
+    - include: mustache-string-interpolations
 
 ###[ MUSTAGE TEMPLATES ]######################################################
 
-  mustache-interpolations:
-    - match: (?={{)
-      push: mustache-interpolation-content
-
-  mustache-interpolation-content:
-    - clear_scopes: 1
-    - include: mustache-templates
-    - include: immediately-pop
-
-  mustache-templates:
+  mustache-string-interpolations:
     - match: '{{'
-      scope: meta.interpolation.vue punctuation.section.interpolation.begin.html
-      push:
-        - mustache-template-end
-        - scope:source.js#expression
+      scope: meta.embedded.expression.vue punctuation.section.embedded.begin.html
+      push: mustache-string-interpolation-body
 
-  mustache-template-end:
+  mustache-string-interpolation-body:
+    - clear_scopes: 1
     - meta_include_prototype: false
-    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - meta_content_scope: meta.embedded.expression.vue source.js.embedded.vue
+    - include: mustache-interpolation-body
+
+  mustache-interpolations:
+    - match: '{{'
+      scope: meta.embedded.expression.vue punctuation.section.embedded.begin.html
+      push: mustache-interpolation-body
+
+  mustache-interpolation-body:
+    - meta_include_prototype: false
+    - meta_content_scope: meta.embedded.expression.vue source.js.embedded.vue
     - match: '}}'
-      scope: meta.interpolation.vue punctuation.section.interpolation.end.html
+      scope: meta.embedded.expression.vue punctuation.section.embedded.end.html
       pop: 1
+    - match: (?=\S)
+      push: scope:source.js#expression
 
 ###[ VUE DIRECTIVES ]#########################################################
 
@@ -791,7 +793,7 @@ contexts:
     - meta_include_prototype: false
     # https://vuejs.org/guide/essentials/template-syntax.html#dynamic-arguments
     - match: \[
-      scope: punctuation.section.interpolation.begin.vue
+      scope: punctuation.section.embedded.begin.vue
       set:
         - vue-dynamic-parameter-name-end
         - scope:source.js#expression
@@ -800,10 +802,10 @@ contexts:
 
   vue-dynamic-parameter-name-end:
     - meta_include_prototype: false
-    - meta_scope: meta.directive.parameter.vue meta.interpolation.vue
+    - meta_scope: meta.directive.parameter.vue meta.embedded.expression.vue
     - meta_content_scope: source.js.embedded.vue
     - match: \]
-      scope: punctuation.section.interpolation.end.vue
+      scope: punctuation.section.embedded.end.vue
       set: vue-directive-modifiers
 
   vue-static-parameter-name:
@@ -843,7 +845,7 @@ contexts:
   vue-directive-double-quoted-value:
     - meta_include_prototype: false
     - meta_scope: meta.directive.value.vue meta.string.vue
-    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - meta_content_scope: meta.embedded.expression.vue source.js.embedded.vue
     - match: \"
       scope: string.quoted.double.vue punctuation.definition.string.end.vue
       pop: 1
@@ -853,7 +855,7 @@ contexts:
   vue-directive-single-quoted-value:
     - meta_include_prototype: false
     - meta_scope: meta.directive.value.vue meta.string.vue
-    - meta_content_scope: meta.interpolation.vue source.js.embedded.vue
+    - meta_content_scope: meta.embedded.expression.vue source.js.embedded.vue
     - match: \'
       scope: string.quoted.single.vue punctuation.definition.string.end.vue
       pop: 1
