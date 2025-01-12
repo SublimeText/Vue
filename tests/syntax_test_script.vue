@@ -48,9 +48,9 @@
 //              ^^^ entity.name.tag
 //                 ^ punctuation.definition.tag.end.js
 //                  ^^^^^^^^^^^^ meta.interpolation.js
-//                  ^ punctuation.definition.interpolation.begin.js
+//                  ^ punctuation.definition.interpolation.begin.js, punctuation.section.interpolation.begin.js
 //                   ^^^^^^^^^^ source.js.embedded.jsx
-//                             ^ punctuation.definition.interpolation.end.js
+//                             ^ punctuation.definition.interpolation.end.js, punctuation.section.interpolation.end.js
 //                              ^^^^^^ meta.tag
 //                              ^^ punctuation.definition.tag.begin.js
 //                                ^^^ entity.name.tag
