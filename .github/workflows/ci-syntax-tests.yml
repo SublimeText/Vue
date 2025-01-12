@@ -28,43 +28,16 @@ jobs:
           - build: 4107
             default_packages: v4107
           - build: 4126
-            default_packages: v4126
+            default_packages: binary
     steps:
       - name: Checkout Vue
         uses: actions/checkout@v4
         with:
           path: Vue
-      - name: Prepare dummy syntaxes
-        run: |
-          scopes=(
-              source.coffee
-              source.livescript
-              source.less
-              source.postcss
-              source.sass
-              source.scss
-              source.sss
-              source.stylus
-              text.jade
-              text.pug
-              text.slm
-              text.slim
-          )
-          mkdir -vp "Dummy"
-          for scope in ${scopes[@]}; do
-          cat << SYNTAX > "Dummy/$scope.sublime-syntax"
-          %YAML 1.2
-          ---
-          scope: $scope
-
-          contexts:
-              main: []
-          SYNTAX
-          done
       - uses: SublimeText/syntax-test-action@v2
         with:
           build: ${{ matrix.build }}
           package_name: Vue
           package_root: Vue
           default_packages: ${{ matrix.default_packages }}
-          additional_packages: Dummy
+          dummy_syntaxes: source.coffee,source.livescript,source.less,source.postcss,source.sass,source.scss,source.sss,source.stylus,text.jade,text.pug,text.slm,text.slim
