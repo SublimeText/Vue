@@ -96,6 +96,7 @@ e.g. `sublime.find_syntax_by_scope("source.ts")` in ST's console.
 Known candidates are:
 
 - [JavaScriptNext - ES6 Syntax](https://packagecontrol.io/packages/JavaScriptNext%20-%20ES6%20Syntax)
+- [Naomi](https://github.com/borela/naomi)
 - [TypeScript](https://packagecontrol.io/packages/TypeScript)
 - [TypeScript Syntax](https://packagecontrol.io/packages/TypeScript%20Syntax)
 
