@@ -714,35 +714,41 @@ contexts:
     - meta_content_scope: meta.directive.vue
     - match: =
       scope: meta.directive.vue punctuation.separator.key-value.vue
-      set: vue-directive-value
+      set:
+        - immediately-pop
+        - vue-directive-value
     - include: else-pop
 
   vue-directive-value:
-    - meta_content_scope: meta.directive.vue
     - match: \"
-      scope: string.quoted.double.vue punctuation.definition.string.begin.vue
-      set: vue-directive-double-quoted-value
+      scope:
+        meta.directive.value.vue meta.string.vue
+        string.quoted.double.vue punctuation.definition.string.begin.vue
+      embed: javascript-expressions
+      embed_scope:
+        meta.directive.value.vue meta.string.vue
+        meta.embedded.expression.vue source.js.embedded.vue
+      escape: \"
+      escape_captures:
+        0: meta.directive.value.vue meta.string.vue
+           string.quoted.double.vue punctuation.definition.string.end.vue
+      pop: 1
     - match: \'
-      scope: string.quoted.single.vue punctuation.definition.string.begin.vue
-      set: vue-directive-single-quoted-value
+      scope:
+        meta.directive.value.vue meta.string.vue
+        string.quoted.single.vue punctuation.definition.string.begin.vue
+      embed: javascript-expressions
+      embed_scope:
+        meta.directive.value.vue meta.string.vue
+        meta.embedded.expression.vue source.js.embedded.vue
+      escape: \'
+      escape_captures:
+        0: meta.directive.value.vue meta.string.vue
+           string.quoted.single.vue punctuation.definition.string.end.vue
+      pop: 1
     - include: else-pop
 
-  vue-directive-double-quoted-value:
-    - meta_include_prototype: false
-    - meta_scope: meta.directive.value.vue meta.string.vue
-    - meta_content_scope: meta.embedded.expression.vue source.js.embedded.vue
-    - match: \"
-      scope: string.quoted.double.vue punctuation.definition.string.end.vue
-      pop: 1
-    - match: (?=\S)
-      push: scope:source.js#expression
-
-  vue-directive-single-quoted-value:
-    - meta_include_prototype: false
-    - meta_scope: meta.directive.value.vue meta.string.vue
-    - meta_content_scope: meta.embedded.expression.vue source.js.embedded.vue
-    - match: \'
-      scope: string.quoted.single.vue punctuation.definition.string.end.vue
-      pop: 1
+  javascript-expressions:
+    # required until ST4176
     - match: (?=\S)
       push: scope:source.js#expression

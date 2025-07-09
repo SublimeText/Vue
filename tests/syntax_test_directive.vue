@@ -247,14 +247,6 @@
 //                                ^^^^^^^ meta.string.js string.quoted.double.js
 //                                        ^ keyword.operator.ternary.js
 //                                          ^^^^^ meta.string.js string.quoted.double.js
-        width: `'${width + "double" + 'single' + quoted}px'` // note the single quotes!
-//             ^^ meta.string string.quoted.other.js
-//               ^^^^^^^^^^ meta.string meta.interpolation.js - string
-//                         ^^^^^^^^ meta.interpolation.js string.quoted.double.js
-//                                 ^^^ meta.string meta.interpolation.js - string
-//                                    ^^^^^^^^ meta.interpolation.js string.quoted.single.js
-//                                            ^^^^^^^^^^ meta.string meta.interpolation.js - string
-//                                                      ^^^^ meta.string string.quoted.other.js
     }'>
 //^^^ meta.directive.value.vue meta.string.vue meta.embedded.expression.vue source.js.embedded.vue meta.mapping.js
 //   ^ meta.directive.value.vue meta.string.vue string.quoted.single.vue punctuation.definition.string.end.vue
@@ -385,3 +377,22 @@
 //                                          ^ meta.tag.template.begin.html meta.directive.vue
 //                                           ^ meta.tag.template.begin.html - meta.directive
 //                                            ^ - meta.tag
+
+
+// https://github.com/SublimeText/Vue/issues/48
+
+    <Component :name="obj?.name!" />
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html
+//  ^ punctuation.definition.tag.begin.html
+//   ^^^^^^^^^ entity.name.tag.other.html
+//             ^ meta.directive.vue keyword.other.directive.vue
+//              ^^^^ meta.directive.parameter.vue entity.other.attribute-name.vue
+//                  ^ meta.directive.vue punctuation.separator.key-value.vue
+//                   ^ meta.directive.value.vue meta.string.vue string.quoted.double.vue punctuation.definition.string.begin.vue
+//                    ^^^^^^^^^^ meta.directive.value.vue meta.string.vue meta.embedded.expression.vue source.js.embedded.vue
+//                    ^^^ variable.other.readwrite.js
+//                       ^^ punctuation.accessor.js
+//                         ^^^^ meta.property.object.js
+//                             ^ keyword.operator.logical.js
+//                              ^ meta.directive.value.vue meta.string.vue string.quoted.double.vue punctuation.definition.string.end.vue
+//                                ^^ punctuation.definition.tag.end.html
