@@ -9,6 +9,12 @@
     see: https://vuejs.org/guide/essentials/template-syntax.html#text-interpolation
      -->
 
+     <!-- {{  -->
+//   ^^^^^^^^^^^^ comment.block.html - meta.embedded
+
+     <!-- {{ no.interpolation }} -->
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.html - meta.embedded
+
     <h1> {{ foo.text }} </h1>
 //       ^^^^^^^^^^^^^^ meta.embedded.expression.vue
 //       ^^ punctuation.section.embedded.begin.html
