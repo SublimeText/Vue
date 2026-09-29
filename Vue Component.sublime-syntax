@@ -76,6 +76,10 @@ contexts:
     - include: i18n-tag
     - include: template-tag
 
+  comment-content:
+    - meta_prepend: true
+    - meta_include_prototype: false
+
 ###[ SCRIPT TAG ]#############################################################
 
   script-tag:
